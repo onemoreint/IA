@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jornada Académica | Inteligencia Artificial para Docentes</title>
+  <meta name="description" content="Jornada académica en vivo sobre Inteligencia Artificial para Docentes. Inscripción por formulario, registro en Google Sheets y confirmación por WhatsApp." />
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0c1730;
+      --card:#111e3d;
+      --card-soft:rgba(255,255,255,.05);
+      --line:rgba(255,255,255,.09);
+      --text:#f4f7ff;
+      --muted:#bfd0f5;
+      --gold:#f7c948;
+      --gold-2:#ffdf7a;
+      --green:#25D366;
+      --danger:#ff8e8e;
+      --ok:#9af0bf;
+      --shadow:0 22px 60px rgba(0,0,0,.35);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 12% 18%, rgba(247,201,72,.14), transparent 0 22%),
+        radial-gradient(circle at 85% 10%, rgba(37,211,102,.10), transparent 0 18%),
+        radial-gradient(circle at 80% 70%, rgba(83,119,255,.12), transparent 0 22%),
+        linear-gradient(180deg, #06101f 0%, #091427 40%, #0b1830 100%);
+    }
+    .container{max-width:1180px;margin:0 auto;padding:0 22px}
+    .topbar{
+      position:sticky; top:0; z-index:30;
+      backdrop-filter: blur(10px);
+      background:rgba(7,17,31,.65);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .topbar-inner{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:14px 0;
+      gap:16px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px
+    }
+    .brand-badge{
+      width:42px;height:42px;border-radius:14px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--gold),var(--gold-2));
+      color:#121212;font-weight:900;
+      box-shadow:0 10px 24px rgba(247,201,72,.25);
+    }
+    .top-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      text-decoration:none;border:none;cursor:pointer;
+      border-radius:16px;padding:14px 22px;display:inline-flex;align-items:center;justify-content:center;
+      font-size:15px;font-weight:800;transition:.2s transform ease, .2s opacity ease, .2s box-shadow ease;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-2));color:#111;box-shadow:0 14px 32px rgba(247,201,72,.22)}
+    .btn-dark{background:rgba(255,255,255,.04);border:1px solid var(--line);color:#fff}
+    .btn-green{background:var(--green);color:#fff;box-shadow:0 14px 32px rgba(37,211,102,.20)}
+    .hero{
+      padding:54px 0 28px;
+      display:grid;grid-template-columns:1.1fr .9fr;gap:26px;align-items:center;
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:9px 14px;border-radius:999px;
+      background:rgba(247,201,72,.12);
+      border:1px solid rgba(247,201,72,.28);
+      color:var(--gold-2);font-size:13px;font-weight:800;letter-spacing:.3px
+    }
+    h1{
+      font-size:clamp(38px,5.2vw,68px);
+      line-height:.98;margin:18px 0 14px;font-weight:900;
+    }
+    .hero p{
+      margin:0 0 22px;color:var(--muted);font-size:clamp(17px,2vw,21px);line-height:1.6;
+      max-width:760px;
+    }
+    .hero-points{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0 28px;
+    }
+    .point{
+      background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:15px 16px;
+      color:#eef3ff;font-size:15px;
+    }
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .panel{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:30px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .panel:before{
+      content:"";
+      position:absolute;inset:-20% auto auto -20%;
+      width:180px;height:180px;border-radius:50%;
+      background:radial-gradient(circle, rgba(247,201,72,.18) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .stats{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;
+    }
+    .stat{
+      background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:18px;padding:16px;text-align:center
+    }
+    .stat strong{display:block;font-size:26px;margin-bottom:6px;color:var(--gold)}
+    .stat span{font-size:13px;color:var(--muted)}
+    .countdown{
+      margin-top:18px;
+      background:linear-gradient(180deg, rgba(247,201,72,.10), rgba(247,201,72,.04));
+      border:1px solid rgba(247,201,72,.24);
+      border-radius:22px;
+      padding:18px;
+    }
+    .countdown h3{margin:0 0 10px;font-size:20px}
+    .timer{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:10px;
+    }
+    .time-box{
+      background:rgba(8,16,30,.52);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;padding:14px 8px;text-align:center
+    }
+    .time-box strong{display:block;font-size:30px;color:#fff}
+    .time-box span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px}
+    .strip{
+      padding:16px 0 8px;
+    }
+    .strip-grid{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+    }
+    .mini{
+      background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:20px;padding:18px
+    }
+    .mini b{display:block;font-size:14px;color:var(--gold-2);margin-bottom:6px}
+    .mini span{font-size:15px;color:#eef2ff;line-height:1.45}
+    .section{padding:26px 0}
+    .section-title{
+      font-size:36px;margin:0 0 12px;font-weight:900
+    }
+    .section-sub{
+      margin:0 0 22px;color:var(--muted);font-size:17px;line-height:1.6;max-width:780px
+    }
+    .benefits{
+      display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+    }
+    .benefit{
+      background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:22px;padding:20px
+    }
+    .benefit .icon{
+      width:54px;height:54px;border-radius:16px;display:grid;place-items:center;
+      background:linear-gradient(135deg, rgba(247,201,72,.22), rgba(247,201,72,.08));
+      color:var(--gold);font-size:26px;margin-bottom:14px
+    }
+    .benefit h4{margin:0 0 8px;font-size:19px}
+    .benefit p{margin:0;color:var(--muted);line-height:1.55}
+    .agenda{
+      display:grid;grid-template-columns:1fr 1fr;gap:16px;
+    }
+    .agenda-card,.testimonial,.faq-item,.form-wrap{
+      background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:24px;padding:22px;
+    }
+    .agenda-card h4{margin:0 0 10px;font-size:20px}
+    .agenda-card ul{padding-left:18px;margin:0}
+    .agenda-card li{margin:10px 0;color:var(--muted);line-height:1.5}
+    .testimonials{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:16px;
+    }
+    .testimonial p{margin:0 0 16px;color:#eef3ff;line-height:1.7}
+    .testimonial .who{color:var(--gold-2);font-weight:800;font-size:14px}
+    .testimonial .role{color:var(--muted);font-size:13px;margin-top:4px}
+    .two-col{
+      display:grid;grid-template-columns:1.05fr .95fr;gap:22px;align-items:start
+    }
+    .event-box{
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.03));
+      border:1px solid var(--line);border-radius:22px;padding:18px;margin-bottom:16px;
+    }
+    .event-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .event-item{
+      background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:16px;padding:14px
+    }
+    .event-label{font-size:12px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:6px}
+    .event-value{font-size:16px;font-weight:800;line-height:1.35}
+    .meet-link{display:block;margin-top:12px;color:#9ec3ff;word-break:break-all;font-size:14px}
+    .form-wrap h3{margin:0 0 8px;font-size:30px}
+    .form-wrap p{margin:0 0 18px;color:var(--muted);line-height:1.55}
+    .field{margin-bottom:12px}
+    label{display:block;margin-bottom:6px;font-weight:800;font-size:14px}
+    input,textarea{
+      width:100%;padding:14px 14px;border-radius:16px;border:1px solid rgba(255,255,255,.12);
+      background:#0b1630;color:#fff;font-size:15px;outline:none
+    }
+    input:focus,textarea:focus{border-color:rgba(247,201,72,.72);box-shadow:0 0 0 3px rgba(247,201,72,.12)}
+    textarea{min-height:96px;resize:vertical}
+    .agree{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:13px;line-height:1.45;margin:10px 0 16px}
+    .agree input{width:auto;margin-top:3px}
+    .status{display:none;margin-top:12px;padding:12px 14px;border-radius:14px;font-size:14px;line-height:1.5}
+    .status.ok{display:block;background:rgba(154,240,191,.12);border:1px solid rgba(154,240,191,.35);color:var(--ok)}
+    .status.error{display:block;background:rgba(255,142,142,.10);border:1px solid rgba(255,142,142,.35);color:#ffd6d6}
+    .faq{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .faq-item h4{margin:0 0 8px;font-size:18px}
+    .faq-item p{margin:0;color:var(--muted);line-height:1.6}
+    .cta-final{
+      margin:28px 0 12px;
+      background:linear-gradient(135deg, rgba(247,201,72,.14), rgba(255,255,255,.04));
+      border:1px solid rgba(247,201,72,.20);
+      border-radius:28px;padding:28px;box-shadow:var(--shadow)
+    }
+    .cta-final h3{margin:0 0 10px;font-size:34px}
+    .cta-final p{margin:0 0 18px;color:var(--muted);font-size:17px;line-height:1.6;max-width:760px}
+    footer{
+      padding:24px 0 44px;
+      color:var(--muted);
+      font-size:14px;
+      border-top:1px solid rgba(255,255,255,.06);
+      margin-top:20px
+    }
+    @media (max-width: 1050px){
+      .hero,.two-col{grid-template-columns:1fr}
+      .benefits,.testimonials,.strip-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width: 760px){
+      .hero-points,.stats,.timer,.event-grid,.benefits,.agenda,.testimonials,.faq,.strip-grid{grid-template-columns:1fr}
+      .topbar-inner,.hero-actions,.top-actions{flex-direction:column;align-items:stretch}
+      .btn{width:100%}
+      .container{padding:0 16px}
+      h1{font-size:42px}
+      .section-title{font-size:30px}
+      .cta-final h3{font-size:28px}
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">IA</div>
+        <div>Jornada Académica para Docentes</div>
+      </div>
+      <div class="top-actions">
+        <a class="btn btn-dark" href="https://meet.google.com/joe-jhdy-nhm" target="_blank" rel="noopener">Google Meet</a>
+        <a class="btn btn-green" href="https://wa.me/573126387467?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20conferencia%20institucional%20de%20IA%20para%20docentes." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="hero container">
+    <div>
+      <div class="eyebrow">ENCUENTRO ACADÉMICO EN VIVO · INSCRIPCIÓN PREVIA · GOOGLE MEET</div>
+      <h1>Inteligencia Artificial para Docentes con enfoque pedagógico, práctico e institucional</h1>
+      <p>
+        Una jornada formativa diseñada para docentes interesados en fortalecer sus competencias digitales, optimizar procesos pedagógicos y conocer aplicaciones concretas de la inteligencia artificial en la planificación, creación de materiales y acompañamiento al aprendizaje.
+      </p>
+
+      <div class="hero-points">
+        <div class="point">✔ Aprende a usar IA sin tecnicismos ni complicaciones</div>
+        <div class="point">✔ Descubre cómo crear clases, rúbricas y actividades más rápido</div>
+        <div class="point">✔ Conoce herramientas útiles para primaria, secundaria y universidad</div>
+        <div class="point">✔ Integra la IA con criterio pedagógico y responsabilidad</div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#registro" class="btn btn-primary">Realizar inscripción</a>
+        <a href="#beneficios" class="btn btn-dark">Conocer el programa</a>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="event-box">
+        <div class="event-grid">
+          <div class="event-item">
+            <div class="event-label">Fecha</div>
+            <div class="event-value">Viernes 25 de abril</div>
+          </div>
+          <div class="event-item">
+            <div class="event-label">Modalidad</div>
+            <div class="event-value">Conferencia online por Google Meet</div>
+          </div>
+          <div class="event-item">
+            <div class="event-label">Registro</div>
+            <div class="event-value">Formulario + confirmación por WhatsApp</div>
+          </div>
+          <div class="event-item">
+            <div class="event-label">Enlace directo</div>
+            <div class="event-value">Acceso habilitado</div>
+          </div>
+        </div>
+        <a class="meet-link" href="https://meet.google.com/joe-jhdy-nhm" target="_blank" rel="noopener">https://meet.google.com/joe-jhdy-nhm</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>100%</strong><span>Modalidad</span></div>
+        <div class="stat"><strong>IA</strong><span>Enfoque educativo</span></div>
+        <div class="stat"><strong>Nivel</strong><span>Formativo</span></div>
+      </div>
+
+      <div class="countdown">
+        <h3>Cuenta regresiva para la conferencia</h3>
+        <div class="timer" id="timer">
+          <div class="time-box"><strong id="days">00</strong><span>Días</span></div>
+          <div class="time-box"><strong id="hours">00</strong><span>Horas</span></div>
+          <div class="time-box"><strong id="minutes">00</strong><span>Minutos</span></div>
+          <div class="time-box"><strong id="seconds">00</strong><span>Segundos</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="strip container">
+    <div class="strip-grid">
+      <div class="mini"><b>PLANIFICACIÓN</b><span>Cómo usar la IA para ahorrar tiempo en la preparación de clases.</span></div>
+      <div class="mini"><b>EVALUACIÓN</b><span>Ideas para rúbricas, actividades y retroalimentación más eficiente.</span></div>
+      <div class="mini"><b>CONTENIDOS</b><span>Generación de recursos, prompts y apoyo para materiales educativos.</span></div>
+      <div class="mini"><b>ACTUALIZACIÓN</b><span>Un enfoque claro para docentes que quieren ponerse al día con la IA.</span></div>
+    </div>
+  </section>
+
+  <section class="section container" id="beneficios">
+    <h2 class="section-title">Beneficios reales para el docente</h2>
+    <p class="section-sub">
+      Esta conferencia no está pensada para impresionar con teoría vacía, sino para mostrar usos concretos
+      de la inteligencia artificial en el trabajo académico diario.
+    </p>
+
+    <div class="benefits">
+      <div class="benefit">
+        <div class="icon">⚡</div>
+        <h4>Ahorro de tiempo</h4>
+        <p>Reduce horas de preparación con estrategias claras para planificación, redacción de actividades y organización pedagógica.</p>
+      </div>
+      <div class="benefit">
+        <div class="icon">🧠</div>
+        <h4>Uso inteligente de la IA</h4>
+        <p>Aprende a dar instrucciones correctas para obtener respuestas más útiles, precisas y adaptadas al aula.</p>
+      </div>
+      <div class="benefit">
+        <div class="icon">📚</div>
+        <h4>Aplicación educativa</h4>
+        <p>Enfocada en el trabajo docente: clases, secuencias, ideas, materiales, evaluaciones y recursos de apoyo.</p>
+      </div>
+      <div class="benefit">
+        <div class="icon">🛡️</div>
+        <h4>Enfoque ético</h4>
+        <p>Se abordará la IA con responsabilidad, sin perder el criterio pedagógico ni el rol del docente como orientador.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="section-title">Contenido de la jornada</h2>
+    <p class="section-sub">Una estructura clara, útil y aplicable, orientada a ofrecer valor formativo y herramientas prácticas para el ejercicio docente.</p>
+    <div class="agenda">
+      <div class="agenda-card">
+        <h4>Bloque 1 · Entender la IA</h4>
+        <ul>
+          <li>Qué es realmente la inteligencia artificial y por qué ya forma parte del presente educativo.</li>
+          <li>Qué puede hacer hoy por un docente y qué no conviene delegarle.</li>
+          <li>Cómo verla como apoyo y no como amenaza.</li>
+        </ul>
+      </div>
+      <div class="agenda-card">
+        <h4>Bloque 2 · Herramientas y prompts</h4>
+        <ul>
+          <li>Cómo usar ChatGPT, Gemini y otras herramientas desde una lógica docente.</li>
+          <li>Cómo escribir mejores indicaciones para recibir mejores respuestas.</li>
+          <li>Errores comunes que hacen perder tiempo.</li>
+        </ul>
+      </div>
+      <div class="agenda-card">
+        <h4>Bloque 3 · Productividad académica</h4>
+        <ul>
+          <li>Planificación de clases, actividades y secuencias con ayuda de IA.</li>
+          <li>Creación de rúbricas, evaluaciones y retroalimentación asistida.</li>
+          <li>Cómo aprovechar la IA sin perder calidad pedagógica.</li>
+        </ul>
+      </div>
+      <div class="agenda-card">
+        <h4>Bloque 4 · Integración al aula</h4>
+        <ul>
+          <li>Ideas para clases presenciales, virtuales e híbridas.</li>
+          <li>Aplicaciones reales con enfoque responsable y práctico.</li>
+          <li>Cómo iniciar aunque el nivel tecnológico sea básico.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="section-title">Valoraciones de participantes</h2>
+    <p class="section-sub">Este espacio puede conservarse como referencia o sustituirse por valoraciones reales de participantes o instituciones.</p>
+    <div class="testimonials">
+      <div class="testimonial">
+        <p>“La conferencia me ayudó a entender la IA sin miedo. Salí con ideas claras para planificar más rápido y adaptar mejor mis clases.”</p>
+        <div class="who">María Fernanda R.</div>
+        <div class="role">Docente de primaria</div>
+      </div>
+      <div class="testimonial">
+        <p>“Lo mejor fue el enfoque práctico. No fue una charla técnica, sino una guía útil para aplicar herramientas reales en el trabajo docente.”</p>
+        <div class="who">Luis Alberto G.</div>
+        <div class="role">Profesor de secundaria</div>
+      </div>
+      <div class="testimonial">
+        <p>“Me abrió la mente. Entendí cómo usar IA para ahorrar tiempo y mejorar la calidad de mis materiales sin perder mi criterio pedagógico.”</p>
+        <div class="who">Carolina P.</div>
+        <div class="role">Coordinadora académica</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container two-col" id="registro">
+    <div>
+      <div class="form-wrap">
+        <h3>Formulario de inscripción</h3>
+        <p>
+          Completa el formulario. La información puede registrarse en Google Sheets y también se abrirá WhatsApp con el mensaje de inscripción, para facilitar la confirmación y el acompañamiento.
+        </p>
+
+        <form id="leadForm">
+          <div class="field">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" placeholder="Escribe tu nombre completo" required>
+          </div>
+
+          <div class="field">
+            <label for="telefono">WhatsApp</label>
+            <input type="tel" id="telefono" placeholder="Ejemplo: +573001112233" required>
+          </div>
+
+          <div class="field">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" placeholder="Ejemplo: docente@email.com" required>
+          </div>
+
+          <div class="field">
+            <label for="institucion">Institución educativa</label>
+            <input type="text" id="institucion" placeholder="Nombre de tu institución">
+          </div>
+
+          <div class="field">
+            <label for="area">Área o materia</label>
+            <input type="text" id="area" placeholder="Ejemplo: Primaria, Inglés, Matemáticas">
+          </div>
+
+          <div class="field">
+            <label for="mensaje">Mensaje adicional</label>
+            <textarea id="mensaje" placeholder="¿Qué te gustaría aprender o resolver con IA?"></textarea>
+          </div>
+
+          <label class="agree">
+            <input type="checkbox" id="acepto" required>
+            <span>Acepto el envío de mis datos para fines de registro y contacto sobre esta conferencia.</span>
+          </label>
+
+          <button type="submit" class="btn btn-primary" style="width:100%">Enviar registro</button>
+          <div id="status" class="status"></div>
+        </form>
+      </div>
+    </div>
+
+    <div>
+      <div class="form-wrap">
+        <h3>Información del evento</h3>
+        <div class="event-box">
+          <div class="event-grid">
+            <div class="event-item">
+              <div class="event-label">Fecha</div>
+              <div class="event-value">Viernes 25 de abril</div>
+            </div>
+            <div class="event-item">
+              <div class="event-label">Plataforma</div>
+              <div class="event-value">Google Meet</div>
+            </div>
+            <div class="event-item">
+              <div class="event-label">Registro</div>
+              <div class="event-value">Formulario + WhatsApp</div>
+            </div>
+            <div class="event-item">
+              <div class="event-label">Acceso</div>
+              <div class="event-value">Enlace listo para ingresar</div>
+            </div>
+          </div>
+          <a class="meet-link" href="https://meet.google.com/joe-jhdy-nhm" target="_blank" rel="noopener">https://meet.google.com/joe-jhdy-nhm</a>
+        </div>
+
+        <div class="faq">
+          <div class="faq-item">
+            <h4>¿Es solo para expertos en tecnología?</h4>
+            <p>No. La conferencia está pensada para docentes que quieren comenzar o mejorar su uso de IA de forma clara y sencilla.</p>
+          </div>
+          <div class="faq-item">
+            <h4>¿Se mostrará algo práctico?</h4>
+            <p>Sí. El enfoque es aplicable al trabajo docente: planificación, materiales, indicaciones y productividad académica.</p>
+          </div>
+          <div class="faq-item">
+            <h4>¿Cómo llega la data a Google?</h4>
+            <p>La landing está preparada para conectarse con Google Sheets usando Google Apps Script, igual que la versión anterior.</p>
+          </div>
+          <div class="faq-item">
+            <h4>¿También llega a WhatsApp?</h4>
+            <p>Sí. Al enviar el formulario, se abre WhatsApp con todos los datos del lead listos para ser enviados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="cta-final">
+      <h3>La educación evoluciona constantemente y requiere actualización permanente.</h3>
+      <p>
+        Participa en esta jornada académica pensada para docentes que desean fortalecer su práctica con herramientas actuales, criterio pedagógico y aplicaciones útiles. La inteligencia artificial, utilizada de manera responsable, puede apoyar la planificación, enriquecer los recursos didácticos y abrir nuevas posibilidades para la enseñanza.
+      </p>
+      <div class="hero-actions">
+        <a href="#registro" class="btn btn-primary">Deseo realizar mi inscripción</a>
+        <a href="https://wa.me/573126387467?text=Hola%2C%20quiero%20registrarme%20a%20la%20conferencia%20institucional%20de%20IA%20para%20docentes." class="btn btn-green" target="_blank" rel="noopener">Solicitar información por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="container">
+    Jornada Académica de Inteligencia Artificial para Docentes · Google Meet · WhatsApp +57 312 638 7467
+  </footer>
+
+  <script>
+    const SCRIPT_URL = "PEGAR_AQUI_URL_DE_APPS_SCRIPT";
+    const WHATSAPP_NUMBER = "573126387467";
+
+    function setStatus(type, msg){
+      const box = document.getElementById("status");
+      box.className = "status " + type;
+      box.textContent = msg;
+    }
+
+    function openWhatsApp(data){
+      const text =
+`Hola, deseo realizar mi inscripción en la jornada académica de inteligencia artificial para docentes.
+
+Nombre: ${data.nombre}
+WhatsApp: ${data.telefono}
+Correo: ${data.correo}
+Institución: ${data.institucion || "-"}
+Área: ${data.area || "-"}
+Mensaje: ${data.mensaje || "-"}
+
+Fecha: Viernes 25 de abril
+Google Meet: https://meet.google.com/joe-jhdy-nhm`;
+
+      const url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+      window.open(url, "_blank");
+    }
+
+    document.getElementById("leadForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+
+      if(!document.getElementById("acepto").checked){
+        setStatus("error", "Debes aceptar el tratamiento de datos para continuar.");
+        return;
+      }
+
+      const data = {
+        fecha_registro: new Date().toISOString(),
+        evento: "Conferencia institucional IA para Docentes",
+        fecha_evento: "Viernes 25 de abril",
+        meet: "https://meet.google.com/joe-jhdy-nhm",
+        nombre: document.getElementById("nombre").value.trim(),
+        telefono: document.getElementById("telefono").value.trim(),
+        correo: document.getElementById("correo").value.trim(),
+        institucion: document.getElementById("institucion").value.trim(),
+        area: document.getElementById("area").value.trim(),
+        mensaje: document.getElementById("mensaje").value.trim()
+      };
+
+      if(!data.nombre || !data.telefono || !data.correo){
+        setStatus("error", "Completa nombre, WhatsApp y correo para enviar el registro.");
+        return;
+      }
+
+      try{
+        if(SCRIPT_URL && SCRIPT_URL !== "PEGAR_AQUI_URL_DE_APPS_SCRIPT"){
+          await fetch(SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify(data)
+          });
+          setStatus("ok", "Inscripción enviada. También se abrirá WhatsApp para confirmar la participación.");
+        }else{
+          setStatus("ok", "La página institucional está lista. Solo falta pegar la URL de Apps Script para registrar la información en Google Sheets.");
+        }
+        openWhatsApp(data);
+        this.reset();
+      }catch(err){
+        setStatus("error", "No se pudo conectar con Google Sheets en este momento. Aun así, se abrirá WhatsApp para no perder tu información de inscripción.");
+        openWhatsApp(data);
+      }
+    });
+
+    // Cuenta regresiva
+    // Puedes ajustar la hora aquí. Actualmente: 25 de abril a las 19:00 hora local del navegador.
+    const targetDate = new Date("2026-04-25T19:00:00");
+
+    function updateCountdown(){
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      if(distance <= 0){
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
