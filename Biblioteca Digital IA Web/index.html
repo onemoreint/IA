@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Biblioteca Digital RAEIA – Libros y revistas sobre Educación e Inteligencia Artificial. Acceso libre y gratuito.">
+<title>RAEIA · Biblioteca Digital IA & Educación</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap');
+
+  :root {
+    --bg:        #080c12;
+    --bg2:       #0d1320;
+    --bg3:       #111827;
+    --card:      #131d2e;
+    --card-h:    #172035;
+    --border:    #1e2d45;
+    --border-h:  #2d4a72;
+    --accent:    #3b82f6;
+    --accent2:   #818cf8;
+    --gold:      #f59e0b;
+    --text:      #e2e8f0;
+    --text2:     #94a3b8;
+    --text3:     #64748b;
+    --success:   #10b981;
+    --radius:    14px;
+    --shadow:    0 4px 24px rgba(0,0,0,.45);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    background: linear-gradient(135deg, #080c12 0%, #0d1a2e 50%, #0a1628 100%);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    padding: 3rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 260px;
+    background: radial-gradient(ellipse, rgba(59,130,246,.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(59,130,246,.12);
+    border: 1px solid rgba(59,130,246,.25);
+    border-radius: 99px;
+    padding: 4px 14px;
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 1.1rem;
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.9rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 20%, var(--accent2) 70%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: .6rem;
+  }
+  .subtitle {
+    color: var(--text2);
+    font-size: 1rem;
+    max-width: 540px;
+    margin: 0 auto 1.4rem;
+  }
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat strong {
+    display: block;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat span { font-size: .78rem; color: var(--text3); }
+
+  /* ── FEATURED BANNER ── */
+  .featured-section {
+    padding: 2rem 1.5rem 0;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .featured-card {
+    background: linear-gradient(135deg, #1a2540 0%, #162038 100%);
+    border: 1px solid rgba(245,158,11,.2);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    position: relative;
+    transition: transform .2s, border-color .2s;
+    cursor: default;
+  }
+  .featured-card:hover { transform: translateY(-3px); border-color: rgba(245,158,11,.4); }
+  .featured-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: var(--gold);
+    color: #000;
+    font-size: .65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 99px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .featured-card h3 {
+    font-size: .95rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: .4rem;
+    padding-right: 60px;
+  }
+  .featured-card .fcard-meta { font-size: .78rem; color: var(--text3); }
+
+  /* ── SEARCH & FILTERS ── */
+  .controls {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(8,12,18,.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+  }
+  .controls-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .search-row {
+    display: flex;
+    gap: .6rem;
+    align-items: center;
+  }
+  .search-wrap {
+    position: relative;
+    flex: 1;
+  }
+  .search-icon {
+    position: absolute;
+    left: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--text3);
+    pointer-events: none;
+    font-size: 1rem;
+  }
+  input[type="search"], select {
+    width: 100%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: .9rem;
+    padding: .65rem .9rem .65rem 2.4rem;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+    -webkit-appearance: none;
+  }
+  select { padding-left: .9rem; cursor: pointer; }
+  input[type="search"]:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+  }
+  .filters-row {
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filters-row select { flex: 1; min-width: 130px; }
+  .btn-clear {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text2);
+    font-family: inherit;
+    font-size: .82rem;
+    padding: .6rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background .15s, border-color .15s;
+  }
+  .btn-clear:hover { background: var(--bg2); border-color: var(--border-h); }
+
+  /* ── RESULTS BAR ── */
+  .results-bar {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .count-badge {
+    background: rgba(59,130,246,.12);
+    border: 1px solid rgba(59,130,246,.2);
+    border-radius: 99px;
+    padding: 4px 14px;
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .tags-active { display: flex; gap: .4rem; flex-wrap: wrap; }
+  .tag-chip {
+    background: rgba(129,140,248,.12);
+    border: 1px solid rgba(129,140,248,.2);
+    border-radius: 99px;
+    padding: 3px 10px;
+    font-size: .75rem;
+    color: var(--accent2);
+    display: flex; align-items: center; gap: 4px;
+  }
+  .tag-chip button {
+    background: none; border: none; color: var(--accent2);
+    cursor: pointer; font-size: .8rem; line-height: 1; padding: 0;
+  }
+
+  /* ── GRID ── */
+  main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: .5rem 1.5rem 3rem;
+  }
+  #grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.1rem;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+    transition: transform .22s cubic-bezier(.34,1.56,.64,1), border-color .2s, box-shadow .2s;
+    animation: fadeUp .4s both;
+    position: relative;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: var(--border-h);
+    box-shadow: var(--shadow);
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-type-icon {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  .card-header { display: flex; gap: .75rem; align-items: flex-start; }
+  .card-title {
+    font-size: .95rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .3rem .6rem;
+    font-size: .78rem;
+  }
+  .meta-item { display: flex; align-items: baseline; gap: 4px; }
+  .meta-label { color: var(--text3); white-space: nowrap; }
+  .meta-val { color: var(--text2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .desc {
+    font-size: .8rem;
+    color: var(--text3);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .tag {
+    background: rgba(59,130,246,.08);
+    border: 1px solid rgba(59,130,246,.15);
+    border-radius: 99px;
+    padding: 2px 9px;
+    font-size: .7rem;
+    color: var(--accent2);
+    white-space: nowrap;
+  }
+
+  .card-actions { display: flex; gap: .5rem; margin-top: auto; }
+  .btn-primary, .btn-secondary {
+    flex: 1;
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: .8rem;
+    font-weight: 600;
+    padding: .55rem .6rem;
+    cursor: pointer;
+    transition: all .18s;
+    border: none;
+    text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: #2563eb; }
+  .btn-secondary {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--text2);
+  }
+  .btn-secondary:hover { border-color: var(--border-h); color: var(--text); }
+  .copied { background: var(--success) !important; color: #fff !important; }
+
+  .lang-badge {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: .65rem;
+    font-weight: 600;
+    padding: 2px 7px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+
+  /* ── EMPTY ── */
+  #empty {
+    display: none;
+    text-align: center;
+    padding: 5rem 1rem;
+    color: var(--text3);
+  }
+  #empty .empty-icon { font-size: 3.5rem; margin-bottom: 1rem; }
+  #empty h3 { font-size: 1.1rem; color: var(--text2); margin-bottom: .5rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: .8rem;
+    color: var(--text3);
+    line-height: 1.7;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ── SCROLL UP ── */
+  #scrollTop {
+    position: fixed;
+    bottom: 1.5rem; right: 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px; height: 44px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 200;
+    transition: background .15s;
+    box-shadow: 0 4px 16px rgba(59,130,246,.4);
+  }
+  #scrollTop:hover { background: #2563eb; }
+  #scrollTop.visible { display: flex; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    header { padding: 2rem 1rem 2rem; }
+    .filters-row select { min-width: 110px; }
+    #grid { grid-template-columns: 1fr; }
+    .meta-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Stagger animation for cards */
+  .card:nth-child(1)  { animation-delay: .05s }
+  .card:nth-child(2)  { animation-delay: .10s }
+  .card:nth-child(3)  { animation-delay: .15s }
+  .card:nth-child(4)  { animation-delay: .20s }
+  .card:nth-child(5)  { animation-delay: .25s }
+  .card:nth-child(6)  { animation-delay: .30s }
+  .card:nth-child(n+7){ animation-delay: .35s }
+
+  /* Color by category */
+  .cat-educacion   { background: rgba(16,185,129,.12); color: #34d399; }
+  .cat-ia          { background: rgba(59,130,246,.12);  color: #93c5fd; }
+  .cat-etica       { background: rgba(245,158,11,.12);  color: #fcd34d; }
+  .cat-docentes    { background: rgba(168,85,247,.12);  color: #c4b5fd; }
+  .cat-politicas   { background: rgba(239,68,68,.12);   color: #fca5a5; }
+  .cat-universidad { background: rgba(20,184,166,.12);  color: #5eead4; }
+  .cat-ia-generativa{ background: rgba(99,102,241,.12); color: #a5b4fc; }
+  .cat-investigacion{ background: rgba(244,63,94,.12);  color: #fda4af; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-badge">🧠 Red Académica · Acceso Abierto</div>
+  <h1>Biblioteca Digital<br>IA & Educación</h1>
+  <p class="subtitle">Recopilación de libros, guías e investigaciones de libre acceso sobre Inteligencia Artificial y Educación — para docentes, investigadores y estudiantes.</p>
+  <div class="stats-row">
+    <div class="stat"><strong id="totalCount">0</strong><span>documentos</span></div>
+    <div class="stat"><strong>+10</strong><span>países</span></div>
+    <div class="stat"><strong>100%</strong><span>gratuito</span></div>
+  </div>
+</header>
+
+<!-- FEATURED -->
+<div class="featured-section">
+  <div class="section-title">⭐ Destacados</div>
+  <div class="featured-grid" id="featuredGrid"></div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="controls-inner">
+    <div class="search-row">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="search" id="searchInput" placeholder="Buscar por título, autor, tema…" autocomplete="off">
+      </div>
+      <button class="btn-clear" onclick="clearAll()">✕ Limpiar</button>
+    </div>
+    <div class="filters-row">
+      <select id="filterCat" onchange="renderGrid()">
+        <option value="">📂 Categoría</option>
+      </select>
+      <select id="filterAuthor" onchange="renderGrid()">
+        <option value="">👤 Autor</option>
+      </select>
+      <select id="filterYear" onchange="renderGrid()">
+        <option value="">📅 Año</option>
+      </select>
+      <select id="filterLang" onchange="renderGrid()">
+        <option value="">🌐 Idioma</option>
+      </select>
+      <select id="filterPub" onchange="renderGrid()">
+        <option value="">🏛️ Publicador</option>
+      </select>
+      <select id="sortBy" onchange="renderGrid()">
+        <option value="recent">🕐 Más recientes</option>
+        <option value="oldest">🕐 Más antiguos</option>
+        <option value="az">↑ Título A-Z</option>
+        <option value="za">↓ Título Z-A</option>
+        <option value="author">↑ Autor A-Z</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS BAR -->
+<div class="results-bar">
+  <div class="count-badge"><span id="countLabel">0 documentos</span></div>
+  <div class="tags-active" id="activeTags"></div>
+</div>
+
+<!-- GRID -->
+<main>
+  <div id="grid"></div>
+  <div id="empty">
+    <div class="empty-icon">📭</div>
+    <h3>Sin resultados</h3>
+    <p>Intenta con otros términos o limpia los filtros.</p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <p>Biblioteca organizada con fines educativos. Los documentos pertenecen a sus respectivos autores y fuentes originales.</p>
+  <p style="margin-top:.5rem">Fuente: <a href="https://raeia.org/books/" target="_blank">RAEIA – Red Académica de Educación e Inteligencia Artificial</a></p>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ══════════════════════════════════════════════
+//  DATASET — Datos reales extraídos de RAEIA
+// ══════════════════════════════════════════════
+const BOOKS = [
+  {
+    id:1,
+    title:"Marco de competencias de IA para la Docencia",
+    author:"Fengchun Miao",
+    publisher:"UNESCO",
+    year:2026,
+    pages:52,
+    country:"Francia",
+    lang:"Español",
+    cat:"Docentes",
+    tags:["Docentes","Competencias","Ética IA","UNESCO","Formación"],
+    desc:"Describe 15 competencias en cinco dimensiones: mentalidad centrada en el ser humano, ética de la IA, fundamentos y aplicaciones, pedagogía de la IA e IA para el aprendizaje profesional. Referencia mundial para marcos nacionales.",
+    url:"https://raeia.org/books/marco-de-competencias-de-ia-para-la-docencia/",
+    featured:true
+  },
+  {
+    id:2,
+    title:"Gobernanza de la Inteligencia Artificial en la Educación Superior",
+    author:"José Luis Ponce López, Carmen Humberta de Jesús Díaz Novelo",
+    publisher:"ANUIES",
+    year:2025,
+    pages:270,
+    country:"México",
+    lang:"Español",
+    cat:"Universidad",
+    tags:["Gobernanza","Universidad","IA","México","Educación Superior"],
+    desc:"Guía a universidades hacia un futuro donde la IA es adoptada y gobernada de manera ética y eficaz. Diseño de currículos, formación continua para docentes y hoja de ruta institucional.",
+    url:"https://raeia.org/books/gobernanza-de-la-inteligencia-artificial-en-la-educacion-superior-perspectivas-y-practicas-institucionales/",
+    featured:true
+  },
+  {
+    id:3,
+    title:"Construyendo Inteligencia Artificial para la educación",
+    author:"María Eugenia Curi, Víctor Koleszar, Germán Capdehourat, Emiliano Pereiro, Brian Lorenzo, Leandro Folgar",
+    publisher:"Ceibal",
+    year:2025,
+    pages:152,
+    country:"Uruguay",
+    lang:"Español",
+    cat:"Educación",
+    tags:["Ceibal","Uruguay","Docentes","IA","Alfabetización","Aula"],
+    desc:"Invitación para docentes a conocer elementos centrales de la IA, sus potenciales y limitaciones. Busca alfabetizar y generar discusiones sobre competencias relevantes para trabajar en educación con IA.",
+    url:"https://raeia.org/books/construyendo-inteligencia-artificial-para-la-educacion/",
+    featured:true
+  },
+  {
+    id:4,
+    title:"IA Aplicada a la Enseñanza y el Aprendizaje",
+    author:"Rubén González Vallejo, Miguel Ezequiel Badillo Mendoza, Fernando Raúl Alfredo Bordignon, Iñaki Navarro Neri",
+    publisher:"Dykinson",
+    year:2026,
+    pages:423,
+    country:"España",
+    lang:"Español",
+    cat:"Educación",
+    tags:["Enseñanza","Aprendizaje","IA","Didáctica","España","Docentes"],
+    desc:"Exploración exhaustiva de la IA en enseñanza y aprendizaje, con panorama general y estudios de caso específicos sobre competencia digital docente e integración de herramientas inteligentes en el aula.",
+    url:"https://raeia.org/books/ia-aplicada-a-la-ensenanza-y-el-aprendizaje/",
+    featured:false
+  },
+  {
+    id:5,
+    title:"Inteligencia Artificial y Educación. Guía para formuladores de políticas",
+    author:"Fengchun Miao, Wayne Holmes",
+    publisher:"UNESCO",
+    year:2022,
+    pages:200,
+    country:"Francia",
+    lang:"Español",
+    cat:"Políticas Públicas",
+    tags:["UNESCO","Políticas","IA","Educación","Ética","Riesgos"],
+    desc:"Orientación a formuladores de políticas sobre cómo aprovechar oportunidades y enfrentar riesgos de la IA en educación. Desde definiciones técnicas hasta análisis de tendencias y marcos regulatorios.",
+    url:"https://raeia.org/books/inteligencia-artificial-y-educacion-guia-para-las-personas-a-cargo-de-formular-politicas/",
+    featured:true
+  },
+  {
+    id:6,
+    title:"Inteligencia Artificial y Educación: Aportaciones de la investigación y retos para las políticas públicas",
+    author:"Ministère de l'Éducation nationale et de la Jeunesse",
+    publisher:"Ministère de l'Éducation nationale et de la Jeunesse",
+    year:2025,
+    pages:56,
+    country:"Francia",
+    lang:"Español",
+    cat:"Políticas Públicas",
+    tags:["Políticas Públicas","IA Generativa","Ética","Francia","Investigación","LLM"],
+    desc:"Inventario de contribuciones de la investigación y directrices internacionales sobre IA y educación: definiciones, políticas públicas, cuestiones éticas, campos de aplicación y perspectivas con IA generativa.",
+    url:"https://raeia.org/books/408-2/",
+    featured:false
+  },
+  {
+    id:7,
+    title:"Observatorio de la Inteligencia Artificial en Educación Superior 2024",
+    author:"Universidad Europea Madrid",
+    publisher:"Universidad Europea Madrid",
+    year:2025,
+    pages:27,
+    country:"España",
+    lang:"Español",
+    cat:"Universidad",
+    tags:["Observatorio","Universidad","España","IA","Educación Superior","Prospectiva"],
+    desc:"Segundo informe del Observatorio que anticipa el panorama universitario con IA desarrollada e implementada. Proporciona visión sobre un futuro plausible para orientar hojas de ruta institucionales.",
+    url:"https://raeia.org/books/observatorio-de-la-inteligencia-artificial-en-educacion-superior-2024/",
+    featured:false
+  },
+  {
+    id:8,
+    title:"Observatorio de Inteligencia Artificial en Educación Superior 2023",
+    author:"Universidad Europea Madrid",
+    publisher:"Universidad Europea Madrid",
+    year:2025,
+    pages:16,
+    country:"España",
+    lang:"Español",
+    cat:"Universidad",
+    tags:["Observatorio","Universidad","España","IA","2023","Educación Superior"],
+    desc:"Primer informe del Observatorio que analiza el potencial impacto de la IA en la educación superior, con énfasis en aplicaciones y riesgos a corto y medio plazo.",
+    url:"https://raeia.org/books/observatorio-de-inteligencia-artificial-en-educacion-superior/",
+    featured:false
+  },
+  {
+    id:9,
+    title:"Oportunidades de Innovación Pedagógica con IA",
+    author:"Banco de Desarrollo de América Latina y el Caribe",
+    publisher:"CAF",
+    year:2024,
+    pages:50,
+    country:"América Latina",
+    lang:"Español",
+    cat:"Educación",
+    tags:["Innovación","LATAM","CAF","Ética","Aula","Políticas","IA"],
+    desc:"Explora oportunidades y desafíos de la IA en sistemas educativos de América Latina y el Caribe. Aborda dilemas éticos, consideraciones didácticas e importancia de una implementación institucional oportuna.",
+    url:"https://raeia.org/books/oportunidades-de-innovacion-pedagogica-con-asistencia-de-inteligencia-artificial/",
+    featured:false
+  },
+  {
+    id:10,
+    title:"La llegada de la inteligencia artificial a la educación",
+    author:"Raúl Darío Moreno Padilla",
+    publisher:"RITI Journal",
+    year:2025,
+    pages:11,
+    country:"Colombia",
+    lang:"Español",
+    cat:"Educación",
+    tags:["Colombia","IA","Educación","Artículo","Investigación"],
+    desc:"Análisis del impacto de la llegada de la IA al campo educativo colombiano, con énfasis en las transformaciones pedagógicas y los retos para docentes y estudiantes.",
+    url:"https://raeia.org/books/la-llegada-de-la-inteligencia-artificial-a-la-educacion/",
+    featured:false
+  },
+  {
+    id:11,
+    title:"Docencia en la Era de la Inteligencia Artificial: Enfoques Prácticos",
+    author:"Rosana Satorre Cuerda",
+    publisher:"Universidad de Alicante",
+    year:2024,
+    pages:80,
+    country:"España",
+    lang:"Español",
+    cat:"Docentes",
+    tags:["Docentes","IA Generativa","Ética","Estrategias","España","Aula"],
+    desc:"Informe que promueve un uso eficaz, responsable y ético de la IA generativa en la educación superior. Revisa estrategias y enfoques internacionales de UNESCO, UE, EE.UU., Reino Unido, Rusia y China.",
+    url:"https://raeia.org/books/258-2/",
+    featured:false
+  },
+  {
+    id:12,
+    title:"ChatGPT en el aula: guía para docentes universitarios",
+    author:"Eduardo Valle, Aarón Alvarado",
+    publisher:"UNITEC",
+    year:2023,
+    pages:65,
+    country:"Honduras",
+    lang:"Español",
+    cat:"Docentes",
+    tags:["ChatGPT","Docentes","Universidad","Prompt Engineering","Guía"],
+    desc:"Guía práctica para docentes universitarios sobre el uso efectivo de ChatGPT en el aula. Incluye casos prácticos, ejemplos de prompts y recomendaciones para la evaluación en la era de la IA.",
+    url:"https://raeia.org/books/?wbg_publisher_s=Universidad+Tecnol%C3%B3gica+Centroamericana",
+    featured:false
+  },
+  {
+    id:13,
+    title:"200+1 Prompts para Educación: guía para docentes innovadores",
+    author:"UNITEC – Decanatura",
+    publisher:"Universidad Tecnológica Centroamericana",
+    year:2024,
+    pages:90,
+    country:"Honduras",
+    lang:"Español",
+    cat:"Docentes",
+    tags:["Prompt Engineering","ChatGPT","Docentes","Guía","IA","Innovación"],
+    desc:"Colección de más de 200 prompts listos para usar en entornos educativos, diseñada para equipos de gestión, docentes y estudiantes que desean integrar IA en sus prácticas pedagógicas.",
+    url:"https://raeia.org/books/?wbg_publisher_s=Universidad+Tecnol%C3%B3gica+Centroamericana",
+    featured:false
+  },
+  {
+    id:14,
+    title:"HumanIA: Guía para docentes",
+    author:"Ceibal",
+    publisher:"Ceibal",
+    year:2023,
+    pages:120,
+    country:"Uruguay",
+    lang:"Español",
+    cat:"Docentes",
+    tags:["Docentes","IA","Humanización","Ceibal","Uruguay","Aula","Arte"],
+    desc:"Guía multichapítulo que cubre: conceptos clave de IA, lenguaje verbal e IA, IA y arte, desafíos éticos y aplicaciones cotidianas. Pensada para que docentes puedan enseñar sobre IA de manera crítica.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:15,
+    title:"Lineamientos para el Uso Ético de la IA",
+    author:"Tecnológico de Monterrey",
+    publisher:"Tecnológico de Monterrey",
+    year:2023,
+    pages:45,
+    country:"México",
+    lang:"Español",
+    cat:"Ética",
+    tags:["Ética IA","Tecnológico de Monterrey","Lineamientos","México","Universidad"],
+    desc:"Marco institucional con lineamientos y principios para el uso ético, responsable y con integridad académica de la IA en el ecosistema educativo del Tecnológico de Monterrey.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:16,
+    title:"Manual de ChatGPT: Aplicaciones en investigación y docencia",
+    author:"Daniel Torres-Salinas, Wenceslao Arroyo-Machado",
+    publisher:"Universidad de Granada",
+    year:2023,
+    pages:70,
+    country:"España",
+    lang:"Español",
+    cat:"Investigación",
+    tags:["ChatGPT","Investigación","Docencia","Manual","España","Bibliometría"],
+    desc:"Material didáctico para cursos sobre ChatGPT aplicado a la investigación académica. Incluye fundamentos técnicos, aplicaciones en revisión de literatura, escritura científica y evaluación de calidad.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:17,
+    title:"Artificial Aesthetics: Generative AI, Art and Visual Media",
+    author:"Emanuele Arielli, Lev Manovich",
+    publisher:"Self-published",
+    year:2023,
+    pages:180,
+    country:"EE.UU.",
+    lang:"Inglés",
+    cat:"IA Generativa",
+    tags:["IA Generativa","Arte","Visual","Creatividad","Filosofía","Inglés"],
+    desc:"Explora cómo la IA generativa transforma la comprensión de la estética, la creatividad, el diseño y la apreciación artística, desde perspectivas de estética, filosofía del arte y psicología.",
+    url:"https://raeia.org/books/artificial-aesthetics-generative-ai-art-and-visual-media/",
+    featured:false
+  },
+  {
+    id:18,
+    title:"Artificial. La nueva inteligencia y el contorno de lo humano",
+    author:"Mariano Sigman, Santiago Bilinkis",
+    publisher:"Debate",
+    year:2026,
+    pages:300,
+    country:"Argentina",
+    lang:"Español",
+    cat:"IA Generativa",
+    tags:["IA","Humanidad","Argentina","Filosofía","Educación","Futuro"],
+    desc:"Exploración de cómo la nueva inteligencia artificial redefine los contornos de lo humano, con capítulo específico sobre el terremoto educativo que genera la IA generativa en escuelas y universidades.",
+    url:"https://raeia.org/books/artificial-la-nueva-inteligencia-y-el-contorno-de-lo-humano/",
+    featured:false
+  },
+  {
+    id:19,
+    title:"Orientación para la IA Generativa en la Educación",
+    author:"Fengchun Miao, Wayne Holmes",
+    publisher:"UNESCO",
+    year:2023,
+    pages:64,
+    country:"Francia",
+    lang:"Español",
+    cat:"Políticas Públicas",
+    tags:["UNESCO","IA Generativa","Orientación","Políticas","Educación","Ética"],
+    desc:"Orientación de la UNESCO sobre herramientas de IA generativa en educación. Aborda el uso responsable, verificación de hechos, privacidad, derechos de autor y equidad en el acceso.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:20,
+    title:"Australian Framework for Generative Artificial Intelligence in Education",
+    author:"Kalervo Gulson, Jason Lodge, Terry Flew y otros",
+    publisher:"Australian Government",
+    year:2024,
+    pages:50,
+    country:"Australia",
+    lang:"Inglés",
+    cat:"Políticas Públicas",
+    tags:["Australia","Framework","IA Generativa","Políticas","Inglés","Educación"],
+    desc:"Marco de referencia australiano para comprender, usar y responder a la IA generativa en contextos educativos nacionales. Guía para instituciones educativas públicas y privadas.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:21,
+    title:"Prompts para entornos educativos: docentes, gestión y estudiantes",
+    author:"Diego F. Craig",
+    publisher:"RAEIA",
+    year:2024,
+    pages:55,
+    country:"Argentina",
+    lang:"Español",
+    cat:"Docentes",
+    tags:["Prompt Engineering","Docentes","Gestión","Estudiantes","ChatGPT","Argentina"],
+    desc:"Colección práctica de prompts organizados para equipos de gestión educativa, docentes en el aula y estudiantes, con ejemplos aplicados a diferentes materias y niveles educativos.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:22,
+    title:"IA como COPILOTO: Creando orientaciones didácticas con inteligencia artificial",
+    author:"Luis Dávila B.",
+    publisher:"RAEIA",
+    year:2024,
+    pages:40,
+    country:"LATAM",
+    lang:"Español",
+    cat:"Docentes",
+    tags:["Copiloto","IA","Didáctica","Docentes","Aula","Orientaciones"],
+    desc:"Guía práctica para que docentes usen la IA como copiloto en la creación de orientaciones didácticas, planificaciones de clase, rúbricas y materiales educativos personalizados.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:23,
+    title:"La transformación de la gestión del talento mediante la IA Generativa",
+    author:"Juan Gustavo Corvalán, Alejandro Melamed",
+    publisher:"RAEIA",
+    year:2024,
+    pages:35,
+    country:"Argentina",
+    lang:"Español",
+    cat:"IA Generativa",
+    tags:["Talento","Gestión","IA Generativa","Argentina","Recursos Humanos","Innovación"],
+    desc:"Análisis del impacto de la IA Generativa en los procesos de gestión del talento en organizaciones educativas e instituciones, con casos prácticos y recomendaciones estratégicas.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:24,
+    title:"Guardianes: ética y educación frente a la IA generativa",
+    author:"Diego F. Craig",
+    publisher:"RAEIA",
+    year:2024,
+    pages:60,
+    country:"Argentina",
+    lang:"Español",
+    cat:"Ética",
+    tags:["Ética IA","Educación","IA Generativa","Guardianes","Valores","Argentina"],
+    desc:"Reflexión profunda sobre el rol de docentes como guardianes éticos ante la irrupción de la IA generativa, con propuestas concretas para una educación crítica y responsable.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:25,
+    title:"Inteligencia Artificial en Educación. Guía Práctica Rápida",
+    author:"Diego F. Craig",
+    publisher:"RAEIA",
+    year:2024,
+    pages:20,
+    country:"Argentina",
+    lang:"Español",
+    cat:"Docentes",
+    tags:["Guía","Móvil","Práctica","Docentes","IA","Argentina","Rápida"],
+    desc:"Guía ultra-práctica en formato de placas visuales, diseñada para leer en 10 minutos desde el móvil. Sintetiza los conceptos clave de IA para educadores sin conocimientos técnicos previos.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:26,
+    title:"Informe de Políticas Públicas de IA en América Latina",
+    author:"Franco Giandana Gigena, Gaspar Pisanu, Ángela Alarcón y otros",
+    publisher:"RAEIA / ONG",
+    year:2024,
+    pages:90,
+    country:"América Latina",
+    lang:"Español",
+    cat:"Políticas Públicas",
+    tags:["Políticas Públicas","LATAM","Regulación","IA","Normativa","Investigación"],
+    desc:"Radiografía normativa: dónde, qué y cómo se está regulando la IA en América Latina. Análisis comparativo de marcos legales y propuestas regulatorias en países de la región.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:27,
+    title:"Pensar la Inteligencia Artificial desde la Psicología Educacional",
+    author:"Gustavo Raul Leyes",
+    publisher:"RAEIA",
+    year:2024,
+    pages:45,
+    country:"Argentina",
+    lang:"Español",
+    cat:"Investigación",
+    tags:["Psicología","Vigotsky","IA","Educación","Argentina","Investigación","Aprendizaje"],
+    desc:"Recupera conceptos de Vigotsky y enfoques actuales enmarcados en la psicología educacional para repensar la relación entre inteligencia artificial y procesos de enseñanza-aprendizaje.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:28,
+    title:"NotebookLM: IA de Google aplicada a la educación",
+    author:"Franco Videla",
+    publisher:"RAEIA",
+    year:2024,
+    pages:30,
+    country:"Argentina",
+    lang:"Español",
+    cat:"Docentes",
+    tags:["NotebookLM","Google","IA","Docentes","Herramientas","Argentina"],
+    desc:"Guía práctica sobre NotebookLM, la plataforma de IA desarrollada por Google, y sus aplicaciones específicas en contextos educativos para docentes e investigadores.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:29,
+    title:"Inteligencia Artificial y Pensamiento Crítico: Caminos para la Educación",
+    author:"Varios autores",
+    publisher:"RAEIA",
+    year:2024,
+    pages:55,
+    country:"LATAM",
+    lang:"Español",
+    cat:"Educación",
+    tags:["Pensamiento Crítico","IA","Educación","Ciudadanía","Digital","Argumento"],
+    desc:"Exploración de la IA desde un óptica desafiante que forma parte del argot social, con rutas para desarrollar pensamiento crítico sobre IA en todos los niveles educativos.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:30,
+    title:"Es hora de hacer una pausa: sin IA no hay educación crítica",
+    author:"Ben Williamson y otros",
+    publisher:"RAEIA",
+    year:2023,
+    pages:25,
+    country:"Reino Unido",
+    lang:"Español",
+    cat:"Ética",
+    tags:["Ética","IA","Educación Crítica","Reflexión","Reino Unido","Pausa"],
+    desc:"Llamado a la reflexión sobre la adopción acelerada de IA en educación. Argumenta por el valor de la pausa pedagógica, la evaluación crítica y los derechos de docentes y estudiantes.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:31,
+    title:"Consenso de Beijing sobre la IA y la Educación",
+    author:"UNESCO",
+    publisher:"UNESCO",
+    year:2019,
+    pages:32,
+    country:"China",
+    lang:"Español",
+    cat:"Políticas Públicas",
+    tags:["UNESCO","Beijing","Consenso","Políticas","IA","Educación Global"],
+    desc:"Documento fundacional de la UNESCO que establece principios internacionales sobre el uso de la IA en educación, con enfoque en equidad, inclusión, calidad y desarrollo sostenible.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:32,
+    title:"Declaración de Heredia: Principios sobre el uso de IA en Educación",
+    author:"OEI",
+    publisher:"Organización de Estados Iberoamericanos",
+    year:2023,
+    pages:18,
+    country:"Costa Rica",
+    lang:"Español",
+    cat:"Políticas Públicas",
+    tags:["Declaración","OEI","Iberoamérica","IA","Principios","Educación"],
+    desc:"Declaración adoptada en Heredia, Costa Rica, que establece principios iberoamericanos para el uso responsable, ético e inclusivo de la inteligencia artificial en sistemas educativos de la región.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:33,
+    title:"El futuro de la IA en América Latina",
+    author:"Axel Rivas y otros",
+    publisher:"OEI / CIPPEC",
+    year:2024,
+    pages:75,
+    country:"Argentina",
+    lang:"Español",
+    cat:"Políticas Públicas",
+    tags:["Futuro","LATAM","IA","OEI","Políticas","Prospectiva","Argentina"],
+    desc:"Análisis prospectivo del desarrollo de la IA en América Latina, con foco en sus implicancias para los sistemas educativos, las brechas digitales y las oportunidades de inclusión.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:34,
+    title:"IMPACTO DE LA IA EN EL RENDIMIENTO ACADÉMICO",
+    author:"Carlos Eduardo Cobos-Gutierrez",
+    publisher:"RAEIA",
+    year:2024,
+    pages:22,
+    country:"Colombia",
+    lang:"Español",
+    cat:"Investigación",
+    tags:["Rendimiento","Académico","Colombia","IA","Investigación","Cuantitativo"],
+    desc:"Investigación que estudia si el uso de tecnología de IA está relacionado con el rendimiento académico de estudiantes, con análisis de datos y recomendaciones para políticas educativas.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:35,
+    title:"Uso de IA en resolución de problemas matemáticos en secundaria",
+    author:"Bastani H., Bastani O., Sungu A., Ge H., Kabakcı Ö., Mariman R.",
+    publisher:"MIT",
+    year:2023,
+    pages:30,
+    country:"EE.UU.",
+    lang:"Español",
+    cat:"Investigación",
+    tags:["Matemáticas","Secundaria","IA","Resolución de Problemas","MIT","Investigación"],
+    desc:"Estudio sobre el uso de IA en la resolución de problemas matemáticos para estudiantes de secundaria, con análisis de impacto en comprensión conceptual versus rendimiento en pruebas.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:36,
+    title:"Plataformas digitales y corporaciones tecnológicas en la educación",
+    author:"Varios",
+    publisher:"RAEIA",
+    year:2024,
+    pages:60,
+    country:"LATAM",
+    lang:"Español",
+    cat:"Investigación",
+    tags:["Plataformas","BigTech","Corporaciones","Digitalización","Educación","Crítica"],
+    desc:"Análisis crítico de cómo las corporaciones tecnológicas y BigTech han ganado terreno en el proceso de digitalización educativa, con reflexiones sobre soberanía digital y autonomía pedagógica.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:37,
+    title:"Dando forma al futuro del aprendizaje: IA y políticas educativas globales",
+    author:"UNESCO / World Bank",
+    publisher:"UNESCO",
+    year:2023,
+    pages:48,
+    country:"Global",
+    lang:"Español",
+    cat:"Políticas Públicas",
+    tags:["UNESCO","Futuro","Aprendizaje","Políticas","Global","IA","World Bank"],
+    desc:"Publicación conjunta sobre cómo la IA está dando forma al futuro del aprendizaje global, con recomendaciones para sistemas educativos nacionales e instituciones multilaterales.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  },
+  {
+    id:38,
+    title:"Incidencias de la IA en la Educación Superior",
+    author:"José-Ramón Sanabria-Navarro, Yahilina Silveira-Pérez, Digna-Dionisia Pérez-Bravo, Manuel de-Jesús-Cortina-Núñez",
+    publisher:"RAEIA",
+    year:2024,
+    pages:18,
+    country:"Cuba / Colombia",
+    lang:"Español",
+    cat:"Universidad",
+    tags:["Universidad","IA","Incidencias","Cuba","Colombia","Investigación","Historia"],
+    desc:"Análisis histórico desde el nacimiento del término 'Inteligencia Artificial' en 1956 hasta sus incidencias actuales en la educación superior iberoamericana, con estudio de casos.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:39,
+    title:"La IA generativa y el replanteo universitario",
+    author:"Hugo Pardo Kuklinski",
+    publisher:"RAEIA",
+    year:2024,
+    pages:35,
+    country:"España",
+    lang:"Español",
+    cat:"Universidad",
+    tags:["IA Generativa","Universidad","Replanteo","España","LLM","Futuro"],
+    desc:"La IA generativa y predictiva obliga a las universidades a repensarse. Analiza cómo los LLM cuestionan los modelos pedagógicos, la evaluación y la identidad de la institución universitaria.",
+    url:"https://raeia.org/books/page/3/",
+    featured:false
+  },
+  {
+    id:40,
+    title:"Aspectos éticos y pedagógicos de los datos y la tecnología",
+    author:"Ludmila Martins",
+    publisher:"RAEIA",
+    year:2024,
+    pages:42,
+    country:"Brasil",
+    lang:"Español",
+    cat:"Ética",
+    tags:["Ética","Datos","Tecnología","Pedagogía","Brasil","Privacidad","IA"],
+    desc:"Reflexión sobre la ética de los datos educativos en la era de la IA, con análisis de privacidad, consentimiento, sesgo algorítmico y responsabilidad pedagógica de las instituciones.",
+    url:"https://raeia.org/books/page/5/",
+    featured:false
+  }
+];
+
+// ══════════════════════════════
+//  Libros DESTACADOS
+// ══════════════════════════════
+const FEATURED_IDS = [1, 5, 2, 3];
+
+// ══════════════════════════════
+//  Mapa de colores por categoría
+// ══════════════════════════════
+const CAT_COLORS = {
+  "Educación":      { bg:"#10b98120", color:"#34d399", icon:"📚" },
+  "Docentes":       { bg:"#a855f720", color:"#c4b5fd", icon:"👩‍🏫" },
+  "IA Generativa":  { bg:"#6366f120", color:"#a5b4fc", icon:"🤖" },
+  "Universidad":    { bg:"#14b8a620", color:"#5eead4", icon:"🎓" },
+  "Políticas Públicas":{ bg:"#ef444420", color:"#fca5a5", icon:"📜" },
+  "Ética":          { bg:"#f59e0b20", color:"#fcd34d", icon:"⚖️" },
+  "Investigación":  { bg:"#f43f5e20", color:"#fda4af", icon:"🔬" },
+};
+function getCat(cat) {
+  return CAT_COLORS[cat] || { bg:"#3b82f620", color:"#93c5fd", icon:"📄" };
+}
+
+// ══════════════════════════════
+//  INIT
+// ══════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  buildFilters();
+  renderFeatured();
+  renderGrid();
+  document.getElementById('totalCount').textContent = BOOKS.length;
+
+  document.getElementById('searchInput').addEventListener('input', () => renderGrid());
+  window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollTop');
+    btn.classList.toggle('visible', window.scrollY > 400);
+  });
+});
+
+function buildFilters() {
+  const cats    = [...new Set(BOOKS.map(b=>b.cat))].sort();
+  const authors = [...new Set(BOOKS.flatMap(b=>b.author.split(',').map(a=>a.trim())))].sort();
+  const years   = [...new Set(BOOKS.map(b=>b.year))].sort((a,b)=>b-a);
+  const langs   = [...new Set(BOOKS.map(b=>b.lang))].sort();
+  const pubs    = [...new Set(BOOKS.map(b=>b.publisher))].sort();
+
+  populate('filterCat',    cats,    '📂 Todas las categorías');
+  populate('filterYear',   years,   '📅 Todos los años');
+  populate('filterLang',   langs,   '🌐 Todos los idiomas');
+  populate('filterPub',    pubs,    '🏛️ Todos los publicadores');
+
+  const sel = document.getElementById('filterAuthor');
+  sel.innerHTML = `<option value="">👤 Todos los autores</option>`;
+  // Solo primeros autores para no sobrecargar
+  const firstAuthors = [...new Set(BOOKS.map(b=>b.author.split(',')[0].trim()))].sort();
+  firstAuthors.forEach(a => {
+    const o = document.createElement('option'); o.value=a; o.textContent=a; sel.appendChild(o);
+  });
+  sel.addEventListener('change', renderGrid);
+}
+
+function populate(id, values, placeholder) {
+  const sel = document.getElementById(id);
+  sel.innerHTML = `<option value="">${placeholder}</option>`;
+  values.forEach(v => {
+    const o = document.createElement('option'); o.value=v; o.textContent=v; sel.appendChild(o);
+  });
+}
+
+function getFiltered() {
+  const q    = document.getElementById('searchInput').value.toLowerCase().trim();
+  const cat  = document.getElementById('filterCat').value;
+  const auth = document.getElementById('filterAuthor').value;
+  const year = document.getElementById('filterYear').value;
+  const lang = document.getElementById('filterLang').value;
+  const pub  = document.getElementById('filterPub').value;
+  const sort = document.getElementById('sortBy').value;
+
+  let res = BOOKS.filter(b => {
+    if (cat  && b.cat !== cat) return false;
+    if (auth && !b.author.includes(auth)) return false;
+    if (year && b.year !== +year) return false;
+    if (lang && b.lang !== lang) return false;
+    if (pub  && b.publisher !== pub) return false;
+    if (q) {
+      const hay = [b.title, b.author, b.publisher, b.desc, ...b.tags].join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  if (sort==='oldest') res.sort((a,b)=>a.year-b.year);
+  else if (sort==='recent') res.sort((a,b)=>b.year-a.year);
+  else if (sort==='az') res.sort((a,b)=>a.title.localeCompare(b.title,'es'));
+  else if (sort==='za') res.sort((a,b)=>b.title.localeCompare(a.title,'es'));
+  else if (sort==='author') res.sort((a,b)=>a.author.localeCompare(b.author,'es'));
+
+  return res;
+}
+
+function renderGrid() {
+  const res  = getFiltered();
+  const grid = document.getElementById('grid');
+  const empty= document.getElementById('empty');
+  const label= document.getElementById('countLabel');
+
+  label.textContent = `${res.length} documento${res.length!==1?'s':''}`;
+
+  if (!res.length) {
+    grid.innerHTML=''; empty.style.display='block'; return;
+  }
+  empty.style.display='none';
+
+  grid.innerHTML = res.map((b,i) => {
+    const cc = getCat(b.cat);
+    const tags = b.tags.slice(0,4).map(t=>`<span class="tag">${t}</span>`).join('');
+    const delay = Math.min(i*0.05, 0.35);
+    return `
+    <article class="card" style="animation-delay:${delay}s">
+      <div class="lang-badge">${b.lang==='Español'?'ESP':b.lang==='Inglés'?'ENG':b.lang.slice(0,3).toUpperCase()}</div>
+      <div class="card-header">
+        <div class="card-type-icon" style="background:${cc.bg};color:${cc.color}">${cc.icon}</div>
+        <h2 class="card-title">${b.title}</h2>
+      </div>
+      <div class="meta-grid">
+        <div class="meta-item"><span class="meta-label">👤</span><span class="meta-val" title="${b.author}">${b.author.split(',')[0].trim()}</span></div>
+        <div class="meta-item"><span class="meta-label">📅</span><span class="meta-val">${b.year}</span></div>
+        <div class="meta-item"><span class="meta-label">🏛️</span><span class="meta-val" title="${b.publisher}">${b.publisher}</span></div>
+        <div class="meta-item"><span class="meta-label">📄</span><span class="meta-val">${b.pages} págs.</span></div>
+        ${b.country?`<div class="meta-item"><span class="meta-label">🌍</span><span class="meta-val">${b.country}</span></div>`:''}
+        <div class="meta-item"><span class="meta-label">📂</span><span class="meta-val">${b.cat}</span></div>
+      </div>
+      <p class="desc">${b.desc}</p>
+      <div class="tags">${tags}</div>
+      <div class="card-actions">
+        <a class="btn-primary" href="${b.url}" target="_blank" rel="noopener">📖 Ver PDF</a>
+        <button class="btn-secondary" onclick="copyLink('${b.url}',this)">🔗 Copiar</button>
+      </div>
+    </article>`;
+  }).join('');
+
+  updateActiveTags();
+}
+
+function renderFeatured() {
+  const featured = BOOKS.filter(b=>b.featured);
+  document.getElementById('featuredGrid').innerHTML = featured.map(b=>{
+    const cc = getCat(b.cat);
+    return `
+    <div class="featured-card">
+      <span class="featured-badge">⭐ Destacado</span>
+      <div style="font-size:1.8rem;margin-bottom:.5rem">${cc.icon}</div>
+      <h3>${b.title}</h3>
+      <p class="fcard-meta">${b.author.split(',')[0].trim()} · ${b.publisher} · ${b.year}</p>
+    </div>`;
+  }).join('');
+}
+
+function copyLink(url, btn) {
+  navigator.clipboard.writeText(url).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML='✅ Copiado'; btn.classList.add('copied');
+    setTimeout(()=>{ btn.innerHTML=orig; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function clearAll() {
+  document.getElementById('searchInput').value='';
+  ['filterCat','filterAuthor','filterYear','filterLang','filterPub'].forEach(id=>{
+    document.getElementById(id).value='';
+  });
+  document.getElementById('sortBy').value='recent';
+  renderGrid();
+}
+
+function updateActiveTags() {
+  const q    = document.getElementById('searchInput').value.trim();
+  const cat  = document.getElementById('filterCat').value;
+  const auth = document.getElementById('filterAuthor').value;
+  const year = document.getElementById('filterYear').value;
+  const lang = document.getElementById('filterLang').value;
+  const pub  = document.getElementById('filterPub').value;
+
+  const active = [];
+  if (q)    active.push({label:`🔍 "${q}"`,       id:'q'});
+  if (cat)  active.push({label:`📂 ${cat}`,        id:'cat'});
+  if (auth) active.push({label:`👤 ${auth.split(',')[0]}`, id:'auth'});
+  if (year) active.push({label:`📅 ${year}`,       id:'year'});
+  if (lang) active.push({label:`🌐 ${lang}`,       id:'lang'});
+  if (pub)  active.push({label:`🏛️ ${pub}`,        id:'pub'});
+
+  const container = document.getElementById('activeTags');
+  container.innerHTML = active.map(a=>`
+    <div class="tag-chip">${a.label}
+      <button onclick="clearTag('${a.id}')">✕</button>
+    </div>`).join('');
+}
+
+function clearTag(id) {
+  if (id==='q') document.getElementById('searchInput').value='';
+  else if (id==='cat')  document.getElementById('filterCat').value='';
+  else if (id==='auth') document.getElementById('filterAuthor').value='';
+  else if (id==='year') document.getElementById('filterYear').value='';
+  else if (id==='lang') document.getElementById('filterLang').value='';
+  else if (id==='pub')  document.getElementById('filterPub').value='';
+  renderGrid();
+}
+</script>
+</body>
+</html>
