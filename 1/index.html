@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mujer Emprende Digital – Propuesta Institucional</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&family=Poppins:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --azul-principal: #0D3B6E;
+    --azul-medio: #1A5FA8;
+    --azul-claro: #2E82CC;
+    --azul-suave: #D6E8F7;
+    --dorado: #C8A951;
+    --dorado-claro: #F0DFA0;
+    --dorado-suave: #FBF5E6;
+    --gris-oscuro: #2C2C3A;
+    --gris-medio: #5A6475;
+    --gris-claro: #EEF1F5;
+    --gris-linea: #D5DCE6;
+    --blanco: #FFFFFF;
+    --accent-rose: #E8637A;
+    --accent-teal: #1D9E8A;
+    --sombra: 0 8px 32px rgba(13,59,110,0.12);
+    --sombra-suave: 0 2px 12px rgba(13,59,110,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--gris-oscuro);
+    background: var(--blanco);
+    line-height: 1.6;
+  }
+
+  /* ─── UTILIDADES ─── */
+  .page { width: 210mm; min-height: 297mm; margin: 0 auto; position: relative; background: white; }
+  .page + .page { page-break-before: always; }
+
+  h1, h2, h3, h4, h5 { font-family: 'Montserrat', sans-serif; }
+  h1 { font-weight: 800; }
+  h2 { font-weight: 700; }
+  h3 { font-weight: 600; }
+
+  .tag {
+    display: inline-block;
+    background: var(--dorado-suave);
+    color: var(--dorado);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--dorado-claro);
+  }
+
+  /* ─────────────────────────────────────────
+     PORTADA
+  ───────────────────────────────────────── */
+  .portada {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--azul-principal);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .portada::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,81,0.18) 0%, transparent 70%);
+  }
+  .portada::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(30,95,168,0.6) 0%, transparent 70%);
+  }
+
+  .portada-geo-1 {
+    position: absolute;
+    top: 0; right: 0;
+    width: 180px; height: 297mm;
+    background: linear-gradient(180deg, rgba(26,95,168,0.55) 0%, rgba(13,59,110,0.2) 100%);
+    clip-path: polygon(40% 0, 100% 0, 100% 100%, 0% 100%);
+  }
+  .portada-geo-2 {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 220px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.25) 0%, transparent 100%);
+  }
+
+  .portada-dots {
+    position: absolute;
+    top: 40px; left: 30px;
+    display: grid;
+    grid-template-columns: repeat(8, 14px);
+    gap: 8px;
+    opacity: 0.12;
+  }
+  .portada-dots span {
+    width: 4px; height: 4px;
+    background: white;
+    border-radius: 50%;
+    display: block;
+  }
+
+  .portada-header {
+    padding: 32px 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+  }
+
+  .portada-logo-area {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .portada-logo-box {
+    width: 110px; height: 38px;
+    border: 1.5px solid rgba(200,169,81,0.5);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .portada-logo-box span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    color: rgba(200,169,81,0.8);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .portada-fecha {
+    text-align: right;
+    color: rgba(255,255,255,0.55);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  .portada-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 48px 0 48px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .portada-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .portada-eyebrow-line {
+    width: 40px; height: 2px;
+    background: var(--dorado);
+  }
+  .portada-eyebrow-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--dorado);
+    text-transform: uppercase;
+  }
+
+  .portada-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--blanco);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+
+  .portada-title-accent {
+    color: var(--dorado);
+  }
+
+  .portada-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13.5px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.65;
+    max-width: 400px;
+    margin-bottom: 36px;
+  }
+
+  .portada-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .portada-badge {
+    background: rgba(255,255,255,0.09);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.8);
+    text-transform: uppercase;
+  }
+
+  .portada-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 480px;
+  }
+  .portada-stat {
+    background: rgba(13,59,110,0.6);
+    padding: 16px 12px;
+    text-align: center;
+  }
+  .portada-stat-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--dorado);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .portada-stat-label {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 8.5px;
+    color: rgba(255,255,255,0.65);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+
+  .portada-footer {
+    padding: 24px 48px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .portada-entidad {
+    color: rgba(255,255,255,0.65);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 10px;
+    line-height: 1.6;
+  }
+  .portada-entidad strong {
+    color: white;
+    font-weight: 600;
+    display: block;
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+
+  .portada-ref {
+    background: var(--dorado);
+    color: var(--azul-principal);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  /* ─────────────────────────────────────────
+     PÁGINAS INTERIORES – LAYOUT BASE
+  ───────────────────────────────────────── */
+  .interior {
+    padding: 0;
+    position: relative;
+  }
+
+  .interior-header {
+    background: var(--azul-principal);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .interior-header::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0;
+    width: 100px; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(200,169,81,0.12));
+  }
+
+  .interior-header-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+  }
+
+  .interior-header-page {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    color: var(--dorado);
+    font-weight: 600;
+  }
+
+  .interior-body {
+    padding: 32px 40px 28px;
+  }
+
+  .interior-footer {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 10px 40px;
+    border-top: 1px solid var(--gris-linea);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .interior-footer span {
+    font-size: 8px;
+    color: var(--gris-medio);
+    font-family: 'Open Sans', sans-serif;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─────────────────────────────────────────
+     TABLA DE CONTENIDO
+  ───────────────────────────────────────── */
+  .toc-page {
+    width: 210mm;
+    min-height: 297mm;
+    display: grid;
+    grid-template-columns: 72px 1fr;
+  }
+
+  .toc-sidebar {
+    background: var(--azul-principal);
+    position: relative;
+    overflow: hidden;
+  }
+  .toc-sidebar::after {
+    content: 'ÍNDICE';
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-90deg);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: rgba(255,255,255,0.2);
+    white-space: nowrap;
+  }
+  .toc-sidebar-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid var(--dorado);
+    margin: 24px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .toc-sidebar-dot::after {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--dorado);
+    border-radius: 50%;
+  }
+
+  .toc-main {
+    padding: 44px 40px 44px 32px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .toc-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--azul-medio);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .toc-heading {
+    font-size: 34px;
+    color: var(--azul-principal);
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+
+  .toc-divider {
+    width: 48px;
+    height: 3px;
+    background: var(--dorado);
+    margin-bottom: 32px;
+  }
+
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--gris-linea);
+    position: relative;
+    cursor: default;
+  }
+
+  .toc-item:last-child { border-bottom: none; }
+
+  .toc-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--dorado);
+    width: 28px;
+    flex-shrink: 0;
+  }
+
+  .toc-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--azul-principal);
+    flex: 1;
+  }
+
+  .toc-sub {
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--gris-medio);
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 28px;
+    display: block;
+    padding-top: 2px;
+  }
+
+  .toc-dots {
+    flex: 1;
+    border-bottom: 1.5px dotted var(--gris-linea);
+    margin: 0 10px 3px;
+  }
+
+  .toc-page-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--azul-claro);
+  }
+
+  .toc-section-header {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: var(--gris-medio);
+    text-transform: uppercase;
+    margin: 18px 0 8px;
+  }
+
+  /* ─────────────────────────────────────────
+     SECCIÓN HEADER (separador de módulo)
+  ───────────────────────────────────────── */
+  .section-divider {
+    background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-medio) 100%);
+    padding: 32px 40px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 28px;
+    border-radius: 0;
+  }
+
+  .section-divider::before {
+    content: '';
+    position: absolute;
+    right: -30px; top: -30px;
+    width: 160px; height: 160px;
+    border: 2px solid rgba(200,169,81,0.2);
+    border-radius: 50%;
+  }
+  .section-divider::after {
+    content: '';
+    position: absolute;
+    right: 20px; top: 20px;
+    width: 80px; height: 80px;
+    border: 1.5px solid rgba(200,169,81,0.15);
+    border-radius: 50%;
+  }
+
+  .section-divider-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.06);
+    position: absolute;
+    right: 44px;
+    bottom: -8px;
+    line-height: 1;
+    letter-spacing: -3px;
+  }
+
+  .section-divider-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3.5px;
+    color: var(--dorado);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-divider-title {
+    font-size: 24px;
+    color: white;
+    font-weight: 700;
+    line-height: 1.2;
+    max-width: 340px;
+  }
+
+  /* ─────────────────────────────────────────
+     COMPONENTES REUTILIZABLES
+  ───────────────────────────────────────── */
+
+  /* Callout destacado */
+  .callout {
+    background: linear-gradient(135deg, var(--azul-suave) 0%, rgba(214,232,247,0.4) 100%);
+    border-left: 4px solid var(--azul-medio);
+    border-radius: 0 10px 10px 0;
+    padding: 18px 22px;
+    margin: 18px 0;
+    position: relative;
+  }
+  .callout.gold {
+    background: var(--dorado-suave);
+    border-left-color: var(--dorado);
+  }
+  .callout.teal {
+    background: rgba(29,158,138,0.08);
+    border-left-color: var(--accent-teal);
+  }
+
+  .callout p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 11.5px;
+    color: var(--gris-oscuro);
+    line-height: 1.7;
+  }
+
+  .callout strong {
+    font-weight: 700;
+    color: var(--azul-principal);
+  }
+
+  /* Heading de sección */
+  .sec-title {
+    font-size: 22px;
+    color: var(--azul-principal);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .sec-subtitle {
+    font-size: 12px;
+    color: var(--gris-medio);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .sec-line {
+    width: 40px;
+    height: 3px;
+    background: var(--dorado);
+    margin-bottom: 22px;
+    border-radius: 2px;
+  }
+
+  /* Grid 2 columnas */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+
+  /* Card */
+  .card {
+    background: white;
+    border: 1px solid var(--gris-linea);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: var(--sombra-suave);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--azul-medio), var(--azul-claro));
+  }
+  .card.gold::before { background: linear-gradient(90deg, var(--dorado), var(--dorado-claro)); }
+  .card.teal::before { background: linear-gradient(90deg, var(--accent-teal), #3bbcaa); }
+  .card.rose::before { background: linear-gradient(90deg, var(--accent-rose), #f08fa0); }
+
+  .card-icon {
+    width: 36px; height: 36px;
+    background: var(--azul-suave);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 18px;
+  }
+  .card.gold .card-icon { background: var(--dorado-suave); }
+  .card.teal .card-icon { background: rgba(29,158,138,0.1); }
+
+  .card h4 {
+    font-size: 13px;
+    color: var(--azul-principal);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .card p, .card li {
+    font-size: 10.5px;
+    color: var(--gris-medio);
+    line-height: 1.6;
+  }
+  .card ul { padding-left: 14px; }
+
+  /* Tabla */
+  table.pro-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+  }
+  table.pro-table thead tr {
+    background: var(--azul-principal);
+    color: white;
+  }
+  table.pro-table thead th {
+    padding: 10px 14px;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+  table.pro-table tbody tr:nth-child(even) { background: var(--gris-claro); }
+  table.pro-table tbody tr:hover { background: var(--azul-suave); }
+  table.pro-table tbody td {
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--gris-linea);
+    color: var(--gris-oscuro);
+    font-family: 'Open Sans', sans-serif;
+  }
+  table.pro-table .highlight {
+    font-weight: 700;
+    color: var(--azul-principal);
+  }
+  .badge-pill {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.5px;
+  }
+  .badge-azul { background: var(--azul-suave); color: var(--azul-medio); }
+  .badge-gold { background: var(--dorado-suave); color: #8B6914; }
+  .badge-teal { background: rgba(29,158,138,0.12); color: #1D7A6A; }
+  .badge-rose { background: rgba(232,99,122,0.1); color: #c04560; }
+
+  /* Indicador SMART */
+  .smart-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin: 16px 0;
+  }
+  .smart-item {
+    background: var(--azul-principal);
+    border-radius: 8px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+  .smart-letter {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--dorado);
+    display: block;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .smart-word {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .smart-desc {
+    font-size: 8.5px;
+    color: rgba(255,255,255,0.8);
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.4;
+  }
+
+  /* Timeline / cronograma */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px; top: 6px; bottom: 6px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--azul-medio), var(--dorado));
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 18px;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -24px;
+    top: 3px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--azul-principal);
+    border: 2px solid var(--dorado);
+    z-index: 1;
+  }
+  .timeline-week {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--dorado);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 2px;
+  }
+  .timeline-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--azul-principal);
+    margin-bottom: 4px;
+  }
+  .timeline-content {
+    font-size: 10.5px;
+    color: var(--gris-medio);
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.55;
+  }
+  .timeline-tag {
+    display: inline-block;
+    background: var(--azul-suave);
+    color: var(--azul-medio);
+    font-size: 8.5px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 8px;
+    margin-right: 4px;
+    margin-top: 4px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  /* Módulo visual */
+  .modulo-card {
+    background: var(--azul-principal);
+    border-radius: 14px;
+    padding: 22px 20px;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    height: 100%;
+  }
+  .modulo-card::before {
+    content: '';
+    position: absolute;
+    bottom: -30px; right: -30px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .modulo-card.m2 { background: linear-gradient(135deg, #1A4B8C 0%, #1D6FA8 100%); }
+  .modulo-card.m3 { background: linear-gradient(135deg, #0D5C4A 0%, #1D9E8A 100%); }
+  .modulo-card.m4 { background: linear-gradient(135deg, #6B2A4C 0%, #C8507A 100%); }
+
+  .modulo-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--dorado);
+    margin-bottom: 8px;
+  }
+  .modulo-title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .modulo-horas {
+    background: rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 4px 12px;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--dorado-claro);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .modulo-items li {
+    font-size: 9.5px;
+    color: rgba(255,255,255,0.78);
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.5;
+    margin-bottom: 3px;
+  }
+  .modulo-items {
+    padding-left: 14px;
+  }
+
+  /* Indicador de impacto */
+  .impacto-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--gris-linea);
+  }
+  .impacto-item:last-child { border-bottom: none; }
+  .impacto-num {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: var(--azul-suave);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--azul-medio);
+  }
+  .impacto-content h5 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azul-principal);
+    margin-bottom: 3px;
+  }
+  .impacto-content p {
+    font-size: 10.5px;
+    color: var(--gris-medio);
+    line-height: 1.5;
+  }
+  .impacto-meta {
+    margin-left: auto;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .impacto-meta .meta-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--azul-principal);
+    line-height: 1;
+  }
+  .impacto-meta .meta-unit {
+    font-size: 9px;
+    color: var(--gris-medio);
+    display: block;
+  }
+
+  /* Cronograma visual */
+  .cronograma-grid {
+    display: grid;
+    grid-template-columns: 90px repeat(8, 1fr);
+    gap: 3px;
+    font-size: 9px;
+  }
+  .cg-header {
+    background: var(--azul-principal);
+    color: white;
+    padding: 6px 4px;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 9px;
+    border-radius: 4px;
+  }
+  .cg-label {
+    background: var(--gris-claro);
+    padding: 6px 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 9px;
+    color: var(--gris-oscuro);
+    font-weight: 600;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .cg-cell {
+    border-radius: 4px;
+    padding: 6px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cg-active {
+    background: var(--azul-medio);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 9px;
+  }
+  .cg-m2 { background: #1D6FA8; color: white; }
+  .cg-m3 { background: var(--accent-teal); color: white; }
+  .cg-m4 { background: var(--accent-rose); color: white; }
+  .cg-empty { background: var(--gris-claro); }
+
+  /* Objetivo específico */
+  .obj-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gris-linea);
+  }
+  .obj-item:last-child { border-bottom: none; }
+  .obj-circle {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--azul-principal);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .obj-text {
+    font-size: 11.5px;
+    color: var(--gris-oscuro);
+    line-height: 1.6;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .obj-text strong {
+    color: var(--azul-principal);
+    font-weight: 700;
+  }
+
+  /* Perfil beneficiaria */
+  .perfil-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    background: var(--gris-claro);
+    border-radius: 10px;
+    margin-bottom: 8px;
+  }
+  .perfil-icon {
+    font-size: 22px;
+    width: 38px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .perfil-text h5 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azul-principal);
+    margin-bottom: 2px;
+  }
+  .perfil-text p {
+    font-size: 10px;
+    color: var(--gris-medio);
+    line-height: 1.4;
+  }
+
+  /* Recurso */
+  .recurso-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+  }
+  .recurso-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--dorado);
+    flex-shrink: 0;
+  }
+  .recurso-text {
+    font-size: 11px;
+    color: var(--gris-oscuro);
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  /* Firma */
+  .firma-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .firma-box {
+    text-align: center;
+  }
+  .firma-line {
+    border-top: 1.5px solid var(--gris-oscuro);
+    padding-top: 8px;
+    margin-top: 48px;
+  }
+  .firma-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--azul-principal);
+  }
+  .firma-cargo {
+    font-size: 9.5px;
+    color: var(--gris-medio);
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 2px;
+  }
+  .firma-logo-box {
+    width: 100%; height: 48px;
+    border: 1.5px dashed var(--gris-linea);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+    background: var(--gris-claro);
+  }
+  .firma-logo-box span {
+    font-size: 8.5px;
+    color: var(--gris-medio);
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+  }
+
+  /* Frase impacto */
+  .frase-impacto {
+    background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-medio) 100%);
+    border-radius: 14px;
+    padding: 32px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin: 24px 0;
+  }
+  .frase-impacto::before {
+    content: '"';
+    position: absolute;
+    top: -20px; left: 20px;
+    font-size: 160px;
+    font-family: 'Georgia', serif;
+    color: rgba(200,169,81,0.15);
+    line-height: 1;
+  }
+  .frase-impacto p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+    font-style: italic;
+  }
+  .frase-impacto span {
+    display: block;
+    font-size: 10px;
+    color: var(--dorado);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Metodología paso */
+  .metodo-step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .metodo-num {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--azul-principal);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .metodo-content h5 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--azul-principal);
+    margin-bottom: 3px;
+  }
+  .metodo-content p {
+    font-size: 10.5px;
+    color: var(--gris-medio);
+    line-height: 1.55;
+  }
+
+  /* Línea dorada decorativa */
+  .gold-line { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--dorado), transparent); margin: 24px 0; }
+
+  /* Intensidad horaria visual */
+  .hora-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .hora-label {
+    font-size: 10px;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--gris-medio);
+    width: 140px;
+    flex-shrink: 0;
+  }
+  .hora-track {
+    flex: 1;
+    height: 10px;
+    background: var(--gris-claro);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .hora-fill {
+    height: 100%;
+    border-radius: 5px;
+    background: linear-gradient(90deg, var(--azul-medio), var(--azul-claro));
+  }
+  .hora-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--azul-principal);
+    width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* Espaciado entre páginas */
+  .mt-12 { margin-top: 12px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-20 { margin-top: 20px; }
+  .mt-24 { margin-top: 24px; }
+  .mb-12 { margin-bottom: 12px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-20 { margin-bottom: 20px; }
+  .col-span-2 { grid-column: span 2; }
+
+  p.body-text {
+    font-size: 11.5px;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--gris-oscuro);
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+
+  /* Print */
+  @media print {
+    .page, .portada, .toc-page { page-break-after: always; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PORTADA                                                    -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="portada">
+  <div class="portada-geo-1"></div>
+  <div class="portada-geo-2"></div>
+  <div class="portada-dots">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="portada-header">
+    <div class="portada-logo-area">
+      <div class="portada-logo-box"><span>ALCALDÍA LOCAL<br>CIUDAD BOLÍVAR</span></div>
+      <div class="portada-logo-box" style="margin-top:6px"><span>LOGO INSTITUCIÓN<br>EJECUTORA</span></div>
+    </div>
+    <div class="portada-fecha">
+      Bogotá D.C., Colombia<br>
+      Año 2025<br>
+      Ref. Propuesta Formativa
+    </div>
+  </div>
+
+  <div class="portada-main">
+    <div class="portada-eyebrow">
+      <div class="portada-eyebrow-line"></div>
+      <div class="portada-eyebrow-text">Propuesta Formativa Institucional</div>
+    </div>
+
+    <div class="portada-title">
+      MUJER<br><span class="portada-title-accent">EMPRENDE</span><br>DIGITAL
+    </div>
+
+    <div class="portada-subtitle">
+      Programa Integral de Formación Social y Emprendimiento Digital para Mujeres en Condición de Vulnerabilidad de Ciudad Bolívar – Bogotá D.C.
+    </div>
+
+    <div class="portada-badges">
+      <span class="portada-badge">💡 Emprendimiento</span>
+      <span class="portada-badge">📱 Marketing Digital</span>
+      <span class="portada-badge">📸 Fotografía Móvil</span>
+      <span class="portada-badge">♀ Empoderamiento Femenino</span>
+    </div>
+
+    <div class="portada-stats">
+      <div class="portada-stat">
+        <span class="portada-stat-num">80</span>
+        <span class="portada-stat-label">Horas</span>
+      </div>
+      <div class="portada-stat">
+        <span class="portada-stat-num">4</span>
+        <span class="portada-stat-label">Módulos</span>
+      </div>
+      <div class="portada-stat">
+        <span class="portada-stat-num">8</span>
+        <span class="portada-stat-label">Semanas</span>
+      </div>
+      <div class="portada-stat">
+        <span class="portada-stat-num">100%</span>
+        <span class="portada-stat-label">Práctico</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="portada-footer">
+    <div class="portada-entidad">
+      <strong>Alcaldía Local de Ciudad Bolívar – Bogotá D.C.</strong>
+      Programa de Capacitación Social para Mujeres de Bajos Recursos<br>
+      Enfoque Diferencial · Perspectiva de Género · Economía Popular
+    </div>
+    <div class="portada-ref">Propuesta 2025</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  TABLA DE CONTENIDO                                        -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="toc-page">
+  <div class="toc-sidebar">
+    <div class="toc-sidebar-dot"></div>
+  </div>
+  <div class="toc-main">
+    <div class="toc-eyebrow">Propuesta Formativa — Ciudad Bolívar 2025</div>
+    <h2 class="toc-heading">Tabla de<br>Contenido</h2>
+    <div class="toc-divider"></div>
+
+    <div class="toc-section-header">Presentación General</div>
+
+    <div class="toc-item">
+      <span class="toc-num">01</span>
+      <div style="flex:1">
+        <span class="toc-text">Justificación del Proyecto</span>
+        <span class="toc-sub">Contexto social · Brechas digitales · Necesidades identificadas</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">03</span>
+    </div>
+
+    <div class="toc-item">
+      <span class="toc-num">02</span>
+      <div style="flex:1">
+        <span class="toc-text">Objetivos General y Específicos</span>
+        <span class="toc-sub">Propósito estratégico · 6 objetivos SMART</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">04</span>
+    </div>
+
+    <div class="toc-item">
+      <span class="toc-num">03</span>
+      <div style="flex:1">
+        <span class="toc-text">Perfil de la Población Beneficiaria</span>
+        <span class="toc-sub">Caracterización · Enfoque diferencial · Criterios de inclusión</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">05</span>
+    </div>
+
+    <div class="toc-item">
+      <span class="toc-num">04</span>
+      <div style="flex:1">
+        <span class="toc-text">Metodología Pedagógica</span>
+        <span class="toc-sub">Enfoque participativo · Estructura de sesiones · Evaluación</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">06</span>
+    </div>
+
+    <div class="toc-section-header">Estructura Académica</div>
+
+    <div class="toc-item">
+      <span class="toc-num">05</span>
+      <div style="flex:1">
+        <span class="toc-text">Mapa Curricular — 4 Módulos</span>
+        <span class="toc-sub">80 horas · Diagrama de módulos · Pensum académico</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">07</span>
+    </div>
+
+    <div class="toc-item">
+      <span class="toc-num">06</span>
+      <div style="flex:1">
+        <span class="toc-text">Cronograma Semanal Detallado</span>
+        <span class="toc-sub">8 semanas · Intensidad horaria · Distribución por módulo</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">09</span>
+    </div>
+
+    <div class="toc-item">
+      <span class="toc-num">07</span>
+      <div style="flex:1">
+        <span class="toc-text">Contenido por Módulo</span>
+        <span class="toc-sub">Formulación · Marketing Digital · Fotografía · Presentación</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">10</span>
+    </div>
+
+    <div class="toc-section-header">Impacto y Recursos</div>
+
+    <div class="toc-item">
+      <span class="toc-num">08</span>
+      <div style="flex:1">
+        <span class="toc-text">Indicadores de Impacto SMART</span>
+        <span class="toc-sub">Resultados medibles · Indicadores cuantitativos y cualitativos</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">12</span>
+    </div>
+
+    <div class="toc-item">
+      <span class="toc-num">09</span>
+      <div style="flex:1">
+        <span class="toc-text">Recursos y Actividades Complementarias</span>
+        <span class="toc-sub">Talento humano · Recursos técnicos · Clausura y certificación</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">13</span>
+    </div>
+
+    <div class="toc-item">
+      <span class="toc-num">10</span>
+      <div style="flex:1">
+        <span class="toc-text">Conclusión Institucional y Firmas</span>
+        <span class="toc-sub">Compromiso social · Aval institucional · Espacios de firma</span>
+      </div>
+      <span class="toc-dots"></span>
+      <span class="toc-page-num">14</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PÁGINA 3 – JUSTIFICACIÓN                                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page interior">
+  <div class="interior-header">
+    <span class="interior-header-title">Mujer Emprende Digital · Ciudad Bolívar 2025</span>
+    <span class="interior-header-page">SECCIÓN 01 · JUSTIFICACIÓN</span>
+  </div>
+  <div class="interior-body">
+    <div class="section-divider" style="margin: 0 -40px 28px; border-radius:0;">
+      <div class="section-divider-label">Sección 01</div>
+      <div class="section-divider-title">Justificación Social del Proyecto</div>
+      <div class="section-divider-num">01</div>
+    </div>
+
+    <p class="body-text">La localidad de <strong>Ciudad Bolívar</strong> concentra una de las poblaciones femeninas con mayor índice de vulnerabilidad económica y social en Bogotá D.C. En este territorio convergen fenómenos estructurales que limitan el acceso de las mujeres a oportunidades laborales formales, al ecosistema digital y a herramientas de generación de ingresos sostenibles.</p>
+
+    <p class="body-text">Frente a esta realidad, el programa <strong>MUJER EMPRENDE DIGITAL</strong> responde a una necesidad urgente e inaplazable: cerrar las brechas digitales, fortalecer las capacidades productivas y abrir nuevos caminos hacia la autonomía económica y el empoderamiento femenino con perspectiva de género, enfoque diferencial e innovación social.</p>
+
+    <div class="grid-3 mt-20 mb-20">
+      <div class="card">
+        <div class="card-icon">📊</div>
+        <h4>Brecha Digital</h4>
+        <p>Las mujeres en condición de vulnerabilidad tienen acceso reducido a herramientas tecnológicas y competencias digitales que les permitan comercializar sus productos y servicios.</p>
+      </div>
+      <div class="card gold">
+        <div class="card-icon">🏠</div>
+        <h4>Jefatura del Hogar</h4>
+        <p>Un porcentaje significativo de las beneficiarias son madres cabeza de hogar que requieren soluciones de generación de ingresos compatibles con sus responsabilidades familiares.</p>
+      </div>
+      <div class="card teal">
+        <div class="card-icon">🌐</div>
+        <h4>Economía Popular</h4>
+        <p>El fortalecimiento de la economía popular y comunitaria desde herramientas digitales representa una estrategia de alto impacto para el desarrollo local sostenible.</p>
+      </div>
+    </div>
+
+    <div class="callout gold">
+      <p><strong>Fundamento estratégico:</strong> Este programa se articula con los lineamientos de las políticas públicas de equidad de género, emprendimiento social y transformación digital del Distrito Capital, constituyendo una respuesta integral, replicable y de alto valor social para la comunidad de Ciudad Bolívar.</p>
+    </div>
+
+    <div class="gold-line"></div>
+
+    <h3 style="font-size:14px; color:var(--azul-principal); margin-bottom:14px;">¿Por qué este programa es necesario hoy?</h3>
+
+    <div class="grid-2">
+      <div>
+        <div class="obj-item">
+          <div class="obj-circle">✓</div>
+          <span class="obj-text">Las redes sociales se han consolidado como el principal canal de comercialización para emprendimientos informales de bajo costo.</span>
+        </div>
+        <div class="obj-item">
+          <div class="obj-circle">✓</div>
+          <span class="obj-text">Las mujeres representan el motor silencioso de la <strong>economía popular</strong> en los territorios vulnerables de Bogotá.</span>
+        </div>
+        <div class="obj-item">
+          <div class="obj-circle">✓</div>
+          <span class="obj-text">La <strong>transformación social</strong> sostenida pasa por el empoderamiento económico femenino con acceso a competencias digitales prácticas.</span>
+        </div>
+      </div>
+      <div>
+        <div class="obj-item">
+          <div class="obj-circle">✓</div>
+          <span class="obj-text">El fortalecimiento comunitario y el <strong>liderazgo femenino</strong> generan efectos multiplicadores que benefician a familias enteras y al tejido social del territorio.</span>
+        </div>
+        <div class="obj-item">
+          <div class="obj-circle">✓</div>
+          <span class="obj-text">La <strong>innovación social</strong> mediante el uso del celular como herramienta productiva democratiza el acceso al mercado digital sin requerir grandes inversiones.</span>
+        </div>
+        <div class="obj-item">
+          <div class="obj-circle">✓</div>
+          <span class="obj-text">El <strong>cierre de brechas digitales</strong> reduce la exclusión social y amplía el espectro de oportunidades para mujeres en condición de vulnerabilidad.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="interior-footer">
+    <span>Mujer Emprende Digital · Propuesta Formativa Institucional 2025</span>
+    <span>Alcaldía Local de Ciudad Bolívar · Bogotá D.C. · Pág. 3</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PÁGINA 4 – OBJETIVOS                                       -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page interior">
+  <div class="interior-header">
+    <span class="interior-header-title">Mujer Emprende Digital · Ciudad Bolívar 2025</span>
+    <span class="interior-header-page">SECCIÓN 02 · OBJETIVOS</span>
+  </div>
+  <div class="interior-body">
+    <div class="section-divider" style="margin: 0 -40px 28px; border-radius:0;">
+      <div class="section-divider-label">Sección 02</div>
+      <div class="section-divider-title">Objetivos del Programa</div>
+      <div class="section-divider-num">02</div>
+    </div>
+
+    <div class="callout" style="margin-top:0; margin-bottom:20px;">
+      <p><strong>Objetivo General:</strong> Fortalecer las capacidades productivas, digitales y comerciales de mujeres en condición de vulnerabilidad de la localidad de Ciudad Bolívar mediante un programa integral de formación en formulación de proyectos, marketing digital, fotografía móvil y presentación de productos, contribuyendo al cierre de brechas de género, al empoderamiento femenino y a la generación de emprendimientos sostenibles desde la economía popular.</p>
+    </div>
+
+    <h3 style="font-size:14px; color:var(--azul-principal); margin-bottom:16px; font-weight:700;">Objetivos Específicos</h3>
+
+    <div class="obj-item">
+      <div class="obj-circle">1</div>
+      <span class="obj-text"><strong>Capacitar</strong> a las participantes en herramientas básicas de emprendimiento y formulación de proyectos productivos, permitiéndoles estructurar ideas de negocio viables, sostenibles y con impacto en la economía popular local.</span>
+    </div>
+    <div class="obj-item">
+      <div class="obj-circle">2</div>
+      <span class="obj-text"><strong>Desarrollar</strong> competencias en estrategias de marketing digital y ventas a través de redes sociales —Facebook, Instagram, TikTok y WhatsApp Business— como canales de comercialización accesibles para emprendimientos de bajo costo.</span>
+    </div>
+    <div class="obj-item">
+      <div class="obj-circle">3</div>
+      <span class="obj-text"><strong>Fortalecer</strong> habilidades prácticas de fotografía móvil orientadas a la promoción visual de productos y servicios, mediante el uso creativo del teléfono celular como herramienta productiva de bajo costo y alto impacto comercial.</span>
+    </div>
+    <div class="obj-item">
+      <div class="obj-circle">4</div>
+      <span class="obj-text"><strong>Potenciar</strong> técnicas de presentación visual, imagen comercial y atención al cliente que eleven la competitividad de los emprendimientos de las participantes en el mercado local y digital.</span>
+    </div>
+    <div class="obj-item">
+      <div class="obj-circle">5</div>
+      <span class="obj-text"><strong>Incentivar</strong> la autonomía económica femenina mediante procesos formativos orientados a la creación y consolidación de emprendimientos sostenibles con perspectiva de género y enfoque diferencial.</span>
+    </div>
+    <div class="obj-item">
+      <div class="obj-circle">6</div>
+      <span class="obj-text"><strong>Generar</strong> espacios de liderazgo, sororidad y empoderamiento social que fortalezcan el tejido comunitario, la autoestima colectiva y la identidad productiva de las mujeres de Ciudad Bolívar.</span>
+    </div>
+
+    <div class="gold-line"></div>
+
+    <h3 style="font-size:13px; color:var(--azul-principal); margin-bottom:12px;">Marco Estratégico — Indicadores SMART</h3>
+    <div class="smart-grid">
+      <div class="smart-item">
+        <span class="smart-letter">S</span>
+        <span class="smart-word">Específico</span>
+        <span class="smart-desc">Mujeres de Ciudad Bolívar en condición de vulnerabilidad</span>
+      </div>
+      <div class="smart-item">
+        <span class="smart-letter">M</span>
+        <span class="smart-word">Medible</span>
+        <span class="smart-desc">% de participantes con emprendimiento activo al finalizar</span>
+      </div>
+      <div class="smart-item">
+        <span class="smart-letter">A</span>
+        <span class="smart-word">Alcanzable</span>
+        <span class="smart-desc">80 horas formativas en metodología práctica y participativa</span>
+      </div>
+      <div class="smart-item">
+        <span class="smart-letter">R</span>
+        <span class="smart-word">Relevante</span>
+        <span class="smart-desc">Alineado con políticas de equidad de género del Distrito</span>
+      </div>
+      <div class="smart-item">
+        <span class="smart-letter">T</span>
+        <span class="smart-word">Temporal</span>
+        <span class="smart-desc">8 semanas · 5 días/semana · 2 horas diarias</span>
+      </div>
+    </div>
+  </div>
+  <div class="interior-footer">
+    <span>Mujer Emprende Digital · Propuesta Formativa Institucional 2025</span>
+    <span>Alcaldía Local de Ciudad Bolívar · Bogotá D.C. · Pág. 4</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PÁGINA 5 – PERFIL BENEFICIARIAS + METODOLOGÍA             -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page interior">
+  <div class="interior-header">
+    <span class="interior-header-title">Mujer Emprende Digital · Ciudad Bolívar 2025</span>
+    <span class="interior-header-page">SECCIÓN 03–04 · BENEFICIARIAS · METODOLOGÍA</span>
+  </div>
+  <div class="interior-body">
+
+    <div class="section-divider" style="margin: 0 -40px 28px; border-radius:0;">
+      <div class="section-divider-label">Sección 03</div>
+      <div class="section-divider-title">Perfil de la Población Beneficiaria</div>
+      <div class="section-divider-num">03</div>
+    </div>
+
+    <div class="grid-2 mb-20">
+      <div>
+        <div class="perfil-badge">
+          <span class="perfil-icon">👩</span>
+          <div class="perfil-text"><h5>Mujeres Mayores de 18 Años</h5><p>Ciudadanas en edad productiva con capacidad de generar ingresos desde el emprendimiento digital.</p></div>
+        </div>
+        <div class="perfil-badge">
+          <span class="perfil-icon">🏠</span>
+          <div class="perfil-text"><h5>Madres Cabeza de Hogar</h5><p>Mujeres que asumen solas la responsabilidad económica y de cuidado de su núcleo familiar.</p></div>
+        </div>
+        <div class="perfil-badge">
+          <span class="perfil-icon">📉</span>
+          <div class="perfil-text"><h5>Condición de Vulnerabilidad Económica</h5><p>Mujeres con acceso restringido a empleo formal, capital y herramientas productivas.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="perfil-badge">
+          <span class="perfil-icon">🛍</span>
+          <div class="perfil-text"><h5>Emprendedoras Informales</h5><p>Mujeres que ya cuentan con una actividad productiva informal y desean formalizarla y escalarla digitalmente.</p></div>
+        </div>
+        <div class="perfil-badge">
+          <span class="perfil-icon">🔍</span>
+          <div class="perfil-text"><h5>Desempleadas en Búsqueda Activa</h5><p>Mujeres sin ingresos estables que buscan alternativas para generar recursos desde casa.</p></div>
+        </div>
+        <div class="perfil-badge">
+          <span class="perfil-icon">🌱</span>
+          <div class="perfil-text"><h5>Enfoque Diferencial e Inclusivo</h5><p>Se priorizará la participación de mujeres en situación de desplazamiento, diversidad funcional o pertenencia a minorías étnicas.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider" style="margin: 0 -40px 28px; border-radius:0;">
+      <div class="section-divider-label">Sección 04</div>
+      <div class="section-divider-title">Metodología Pedagógica</div>
+      <div class="section-divider-num">04</div>
+    </div>
+
+    <p class="body-text">El programa adopta un enfoque pedagógico <strong>participativo, vivencial y orientado a resultados</strong>, basado en el aprendizaje experiencial, el trabajo colaborativo y la aplicación práctica inmediata de los conocimientos. Cada sesión está diseñada para respetar los contextos y saberes previos de las participantes.</p>
+
+    <div class="grid-2 mt-16">
+      <div>
+        <div class="metodo-step">
+          <div class="metodo-num">1</div>
+          <div class="metodo-content"><h5>Activación e Integración</h5><p>Dinámica de inicio para crear ambiente seguro, motivador y de confianza entre las participantes.</p></div>
+        </div>
+        <div class="metodo-step">
+          <div class="metodo-num">2</div>
+          <div class="metodo-content"><h5>Conceptualización Sencilla</h5><p>Explicación teórica clara, contextualizada y adaptada al nivel educativo de cada grupo.</p></div>
+        </div>
+        <div class="metodo-step">
+          <div class="metodo-num">3</div>
+          <div class="metodo-content"><h5>Taller Práctico Individual</h5><p>Ejercicio aplicado con el celular, herramientas digitales gratuitas y materiales del entorno.</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="metodo-step">
+          <div class="metodo-num">4</div>
+          <div class="metodo-content"><h5>Trabajo Colaborativo</h5><p>Actividad grupal que fomente la sororidad, el intercambio de saberes y el apoyo mutuo.</p></div>
+        </div>
+        <div class="metodo-step">
+          <div class="metodo-num">5</div>
+          <div class="metodo-content"><h5>Ejercicio de Aplicación Real</h5><p>Cada sesión culmina con un producto concreto: publicación, foto, catálogo o proyecto.</p></div>
+        </div>
+        <div class="metodo-step">
+          <div class="metodo-num">6</div>
+          <div class="metodo-content"><h5>Retroalimentación Constructiva</h5><p>Espacio de revisión, ajuste y reconocimiento de los avances de cada participante.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="interior-footer">
+    <span>Mujer Emprende Digital · Propuesta Formativa Institucional 2025</span>
+    <span>Alcaldía Local de Ciudad Bolívar · Bogotá D.C. · Pág. 5</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PÁGINA 6 – MAPA CURRICULAR                                 -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page interior">
+  <div class="interior-header">
+    <span class="interior-header-title">Mujer Emprende Digital · Ciudad Bolívar 2025</span>
+    <span class="interior-header-page">SECCIÓN 05 · MAPA CURRICULAR</span>
+  </div>
+  <div class="interior-body">
+    <div class="section-divider" style="margin: 0 -40px 28px; border-radius:0;">
+      <div class="section-divider-label">Sección 05</div>
+      <div class="section-divider-title">Estructura Curricular — 4 Módulos · 80 Horas</div>
+      <div class="section-divider-num">05</div>
+    </div>
+
+    <div class="grid-2 mb-24">
+      <div class="modulo-card">
+        <div class="modulo-num">MÓDULO 01</div>
+        <div class="modulo-title">Formulación de Proyectos de Emprendimiento</div>
+        <div class="modulo-horas">⏱ 20 Horas · Semanas 1 y 2</div>
+        <ul class="modulo-items">
+          <li>Introducción al emprendimiento social y femenino</li>
+          <li>Identificación de talentos y oportunidades</li>
+          <li>Construcción de identidad del negocio</li>
+          <li>Análisis básico de mercado y público objetivo</li>
+          <li>Costos, presupuesto y fijación de precios</li>
+          <li>Pitch básico de presentación del proyecto</li>
+          <li><strong style="color:var(--dorado-claro)">Actividad: Presentación del emprendimiento</strong></li>
+        </ul>
+      </div>
+
+      <div class="modulo-card m2">
+        <div class="modulo-num">MÓDULO 02</div>
+        <div class="modulo-title">Marketing y Ventas por Redes Sociales</div>
+        <div class="modulo-horas">⏱ 25 Horas · Semanas 3, 4 y 5</div>
+        <ul class="modulo-items">
+          <li>Marketing digital: conceptos y aplicación</li>
+          <li>Facebook, Instagram, TikTok y WhatsApp Business</li>
+          <li>Creación de marca personal y perfil comercial</li>
+          <li>Técnicas de venta, atención y cierre por chat</li>
+          <li>Creación de contenido: reels, historias y posts</li>
+          <li>Estrategias de crecimiento y fidelización</li>
+          <li><strong style="color:var(--dorado-claro)">Actividad: Campaña real en redes sociales</strong></li>
+        </ul>
+      </div>
+
+      <div class="modulo-card m3">
+        <div class="modulo-num">MÓDULO 03</div>
+        <div class="modulo-title">Fotografía Móvil para Productos</div>
+        <div class="modulo-horas">⏱ 15 Horas · Semana 6</div>
+        <ul class="modulo-items">
+          <li>Uso profesional de la cámara del celular</li>
+          <li>Iluminación natural y composición</li>
+          <li>Fotografía de comida, ropa, belleza y manualidades</li>
+          <li>Edición con Canva y apps gratuitas</li>
+          <li>Eliminación de fondos y retoque básico</li>
+          <li>Fotos para Instagram, WhatsApp y catálogos</li>
+          <li><strong style="color:var(--dorado-claro)">Actividad: Catálogo digital del emprendimiento</strong></li>
+        </ul>
+      </div>
+
+      <div class="modulo-card m4">
+        <div class="modulo-num">MÓDULO 04</div>
+        <div class="modulo-title">Presentación y Comercialización de Productos</div>
+        <div class="modulo-horas">⏱ 20 Horas · Semanas 7 y 8</div>
+        <ul class="modulo-items">
+          <li>Imagen comercial y presentación personal</li>
+          <li>Empaque económico y exhibición de productos</li>
+          <li>Comunicación asertiva y servicio al cliente</li>
+          <li>Lenguaje comercial: beneficios vs características</li>
+          <li>Técnicas de venta presencial y experiencia del cliente</li>
+          <li>Preparación para la feria de emprendimiento</li>
+          <li><strong style="color:var(--dorado-claro)">Actividad: Feria de emprendimiento final</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Intensidad horaria -->
+    <div class="callout" style="margin-bottom:16px;">
+      <p style="font-weight:700; font-size:12px; color:var(--azul-principal); margin-bottom:10px;">📊 Cuadro de Intensidad Horaria por Módulo</p>
+      <div class="hora-bar">
+        <span class="hora-label">Módulo 1 · Formulación</span>
+        <div class="hora-track"><div class="hora-fill" style="width:25%; background:linear-gradient(90deg,#0D3B6E,#1A5FA8)"></div></div>
+        <span class="hora-val">20 h</span>
+      </div>
+      <div class="hora-bar">
+        <span class="hora-label">Módulo 2 · Marketing Digital</span>
+        <div class="hora-track"><div class="hora-fill" style="width:31.25%; background:linear-gradient(90deg,#1A5FA8,#2E82CC)"></div></div>
+        <span class="hora-val">25 h</span>
+      </div>
+      <div class="hora-bar">
+        <span class="hora-label">Módulo 3 · Fotografía</span>
+        <div class="hora-track"><div class="hora-fill" style="width:18.75%; background:linear-gradient(90deg,#1D9E8A,#3bbcaa)"></div></div>
+        <span class="hora-val">15 h</span>
+      </div>
+      <div class="hora-bar">
+        <span class="hora-label">Módulo 4 · Presentación</span>
+        <div class="hora-track"><div class="hora-fill" style="width:25%; background:linear-gradient(90deg,#C8507A,#f08fa0)"></div></div>
+        <span class="hora-val">20 h</span>
+      </div>
+      <div class="hora-bar" style="margin-top:10px; padding-top:10px; border-top:1px solid var(--gris-linea)">
+        <span class="hora-label"><strong>TOTAL DEL PROGRAMA</strong></span>
+        <div class="hora-track"><div class="hora-fill" style="width:100%; background:linear-gradient(90deg,var(--dorado),var(--azul-medio))"></div></div>
+        <span class="hora-val" style="color:var(--dorado)"><strong>80 h</strong></span>
+      </div>
+    </div>
+
+    <table class="pro-table" style="margin-top:16px;">
+      <thead>
+        <tr>
+          <th>Módulo</th>
+          <th>Componente</th>
+          <th>Duración</th>
+          <th>Semanas</th>
+          <th>Modalidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="highlight">01</td><td>Formulación de Proyectos</td><td><span class="badge-pill badge-azul">20 horas</span></td><td>Semanas 1–2</td><td>Presencial Práctico</td></tr>
+        <tr><td class="highlight">02</td><td>Marketing y Ventas Digital</td><td><span class="badge-pill badge-azul">25 horas</span></td><td>Semanas 3–5</td><td>Presencial + Taller</td></tr>
+        <tr><td class="highlight">03</td><td>Fotografía Móvil</td><td><span class="badge-pill badge-teal">15 horas</span></td><td>Semana 6</td><td>Taller Práctico</td></tr>
+        <tr><td class="highlight">04</td><td>Presentación de Productos</td><td><span class="badge-pill badge-rose">20 horas</span></td><td>Semanas 7–8</td><td>Vivencial + Feria</td></tr>
+        <tr style="background:var(--azul-suave)"><td class="highlight" colspan="2"><strong>TOTAL DEL PROGRAMA</strong></td><td><span class="badge-pill badge-gold">80 horas</span></td><td>8 semanas</td><td>5 días/sem · 2 h/día</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="interior-footer">
+    <span>Mujer Emprende Digital · Propuesta Formativa Institucional 2025</span>
+    <span>Alcaldía Local de Ciudad Bolívar · Bogotá D.C. · Pág. 6</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PÁGINA 7 – CRONOGRAMA                                      -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page interior">
+  <div class="interior-header">
+    <span class="interior-header-title">Mujer Emprende Digital · Ciudad Bolívar 2025</span>
+    <span class="interior-header-page">SECCIÓN 06 · CRONOGRAMA</span>
+  </div>
+  <div class="interior-body">
+    <div class="section-divider" style="margin: 0 -40px 28px; border-radius:0;">
+      <div class="section-divider-label">Sección 06</div>
+      <div class="section-divider-title">Cronograma Semanal del Programa</div>
+      <div class="section-divider-num">06</div>
+    </div>
+
+    <!-- Cronograma visual tipo Gantt -->
+    <div class="cronograma-grid mb-20">
+      <div class="cg-header" style="background:var(--gris-oscuro)">Módulo</div>
+      <div class="cg-header">Sem 1</div>
+      <div class="cg-header">Sem 2</div>
+      <div class="cg-header">Sem 3</div>
+      <div class="cg-header">Sem 4</div>
+      <div class="cg-header">Sem 5</div>
+      <div class="cg-header">Sem 6</div>
+      <div class="cg-header">Sem 7</div>
+      <div class="cg-header">Sem 8</div>
+
+      <div class="cg-label">M1 · Formulación</div>
+      <div class="cg-cell cg-active">10h</div>
+      <div class="cg-cell cg-active">10h</div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+
+      <div class="cg-label">M2 · Marketing</div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-m2">10h</div>
+      <div class="cg-cell cg-m2">10h</div>
+      <div class="cg-cell cg-m2">5h</div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+
+      <div class="cg-label">M3 · Fotografía</div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-m3">15h</div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+
+      <div class="cg-label">M4 · Presentación</div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-empty"></div>
+      <div class="cg-cell cg-m4">10h</div>
+      <div class="cg-cell cg-m4">10h</div>
+    </div>
+
+    <!-- Timeline detallado -->
+    <h3 style="font-size:14px; color:var(--azul-principal); margin-bottom:20px; font-weight:700;">Detalle por Semana</h3>
+
+    <div class="grid-2">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Semana 1</div>
+          <div class="timeline-title">Módulo 1 · Inicio: Emprendimiento Social</div>
+          <div class="timeline-content">Qué es emprender. Identificación de talentos y habilidades. Ideas de negocio de bajo costo. Emprendimiento femenino como motor de cambio.</div>
+          <span class="timeline-tag">Formulación</span><span class="timeline-tag">10 h</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Semana 2</div>
+          <div class="timeline-title">Módulo 1 · Cierre: Construcción del Proyecto</div>
+          <div class="timeline-content">Nombre del emprendimiento. Identidad básica. Objetivos. Público objetivo. Costos, precios y Pitch de presentación.</div>
+          <span class="timeline-tag">Formulación</span><span class="timeline-tag">10 h</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="border-color:#1A5FA8; background:#1A5FA8;"></div>
+          <div class="timeline-week">Semana 3</div>
+          <div class="timeline-title">Módulo 2 · Marketing Digital: Fundamentos</div>
+          <div class="timeline-content">Qué es el marketing. Redes sociales como herramienta de negocio. Creación de marca personal y perfil comercial atractivo.</div>
+          <span class="timeline-tag" style="background:rgba(26,95,168,0.1);color:#1A5FA8">Marketing</span><span class="timeline-tag">10 h</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="border-color:#1A5FA8; background:#1A5FA8;"></div>
+          <div class="timeline-week">Semana 4</div>
+          <div class="timeline-title">Módulo 2 · Ventas: WhatsApp y Contenido</div>
+          <div class="timeline-content">Atención al cliente. Técnicas de cierre de ventas. Creación de contenido: reels básicos, historias y estados que venden.</div>
+          <span class="timeline-tag" style="background:rgba(26,95,168,0.1);color:#1A5FA8">Marketing</span><span class="timeline-tag">10 h</span>
+        </div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot" style="border-color:#1A5FA8; background:#1A5FA8;"></div>
+          <div class="timeline-week">Semana 5</div>
+          <div class="timeline-title">Módulo 2 · Cierre: Estrategias de Crecimiento</div>
+          <div class="timeline-content">Cómo conseguir y fidelizar clientes. Promociones efectivas. Marketing emocional. Campaña real en redes sociales.</div>
+          <span class="timeline-tag" style="background:rgba(26,95,168,0.1);color:#1A5FA8">Marketing</span><span class="timeline-tag">5 h</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="border-color:var(--accent-teal); background:var(--accent-teal);"></div>
+          <div class="timeline-week">Semana 6</div>
+          <div class="timeline-title">Módulo 3 · Fotografía Móvil para Productos</div>
+          <div class="timeline-content">Cámara, iluminación natural, ángulos, fondos. Edición con Canva. Sesión fotográfica real. Producción del catálogo digital.</div>
+          <span class="timeline-tag" style="background:rgba(29,158,138,0.12);color:#1D7A6A">Fotografía</span><span class="timeline-tag">15 h</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="border-color:var(--accent-rose); background:var(--accent-rose);"></div>
+          <div class="timeline-week">Semana 7</div>
+          <div class="timeline-title">Módulo 4 · Imagen Comercial y Atención</div>
+          <div class="timeline-content">Imagen personal y del producto. Empaque económico. Comunicación asertiva. Servicio al cliente y experiencia del comprador.</div>
+          <span class="timeline-tag" style="background:rgba(232,99,122,0.1);color:#c04560">Presentación</span><span class="timeline-tag">10 h</span>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot" style="border-color:var(--dorado); background:var(--dorado);"></div>
+          <div class="timeline-week">Semana 8</div>
+          <div class="timeline-title">🎉 Feria de Emprendimiento · Clausura y Graduación</div>
+          <div class="timeline-content">Exhibición y venta de productos. Presentación de proyectos. Simulación de ventas reales. Entrega de certificados.</div>
+          <span class="timeline-tag" style="background:var(--dorado-suave);color:#8B6914">Clausura</span><span class="timeline-tag">10 h</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="interior-footer">
+    <span>Mujer Emprende Digital · Propuesta Formativa Institucional 2025</span>
+    <span>Alcaldía Local de Ciudad Bolívar · Bogotá D.C. · Pág. 7</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PÁGINA 8 – INDICADORES DE IMPACTO                          -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page interior">
+  <div class="interior-header">
+    <span class="interior-header-title">Mujer Emprende Digital · Ciudad Bolívar 2025</span>
+    <span class="interior-header-page">SECCIÓN 08 · INDICADORES DE IMPACTO</span>
+  </div>
+  <div class="interior-body">
+    <div class="section-divider" style="margin: 0 -40px 28px; border-radius:0;">
+      <div class="section-divider-label">Sección 08</div>
+      <div class="section-divider-title">Indicadores de Impacto y Resultados Esperados</div>
+      <div class="section-divider-num">08</div>
+    </div>
+
+    <div class="grid-4 mb-20">
+      <div class="card gold" style="text-align:center; padding:16px 12px;">
+        <div style="font-size:28px; font-weight:900; color:var(--dorado); font-family:'Montserrat',sans-serif; line-height:1;">80%</div>
+        <div style="font-size:9px; color:var(--gris-medio); margin-top:6px; line-height:1.4;">Participantes con emprendimiento activo al finalizar</div>
+      </div>
+      <div class="card" style="text-align:center; padding:16px 12px;">
+        <div style="font-size:28px; font-weight:900; color:var(--azul-medio); font-family:'Montserrat',sans-serif; line-height:1;">100%</div>
+        <div style="font-size:9px; color:var(--gris-medio); margin-top:6px; line-height:1.4;">Con perfil comercial en redes sociales activado</div>
+      </div>
+      <div class="card teal" style="text-align:center; padding:16px 12px;">
+        <div style="font-size:28px; font-weight:900; color:var(--accent-teal); font-family:'Montserrat',sans-serif; line-height:1;">90%</div>
+        <div style="font-size:9px; color:var(--gris-medio); margin-top:6px; line-height:1.4;">Con catálogo digital propio elaborado</div>
+      </div>
+      <div class="card rose" style="text-align:center; padding:16px 12px;">
+        <div style="font-size:28px; font-weight:900; color:var(--accent-rose); font-family:'Montserrat',sans-serif; line-height:1;">70%</div>
+        <div style="font-size:9px; color:var(--gris-medio); margin-top:6px; line-height:1.4;">Con incremento de ingresos en los primeros 3 meses</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px; color:var(--azul-principal); margin-bottom:14px;">Indicadores Cuantitativos y Cualitativos</h3>
+
+    <div class="impacto-item">
+      <div class="impacto-num">🎯</div>
+      <div class="impacto-content" style="flex:1">
+        <h5>Número de Mujeres Capacitadas</h5>
+        <p>Total de participantes que culminen satisfactoriamente el programa con mínimo 80% de asistencia.</p>
+      </div>
+      <div class="impacto-meta"><span class="meta-val">30+</span><span class="meta-unit">Beneficiarias</span></div>
+    </div>
+
+    <div class="impacto-item">
+      <div class="impacto-num">📱</div>
+      <div class="impacto-content" style="flex:1">
+        <h5>Perfiles Comerciales Activados</h5>
+        <p>Mujeres que creen y activen un perfil de negocio en al menos 2 redes sociales durante el proceso.</p>
+      </div>
+      <div class="impacto-meta"><span class="meta-val">100%</span><span class="meta-unit">de las participantes</span></div>
+    </div>
+
+    <div class="impacto-item">
+      <div class="impacto-num">📷</div>
+      <div class="impacto-content" style="flex:1">
+        <h5>Catálogos Digitales Producidos</h5>
+        <p>Catálogos fotográficos de productos elaborados durante el módulo de fotografía y presentación.</p>
+      </div>
+      <div class="impacto-meta"><span class="meta-val">1 c/u</span><span class="meta-unit">Por participante</span></div>
+    </div>
+
+    <div class="impacto-item">
+      <div class="impacto-num">💡</div>
+      <div class="impacto-content" style="flex:1">
+        <h5>Emprendimientos Formulados</h5>
+        <p>Proyectos productivos estructurados con identidad, precio, mercado y estrategia digital definidos.</p>
+      </div>
+      <div class="impacto-meta"><span class="meta-val">80%</span><span class="meta-unit">con plan de negocio</span></div>
+    </div>
+
+    <div class="impacto-item">
+      <div class="impacto-num">🤝</div>
+      <div class="impacto-content" style="flex:1">
+        <h5>Tejido Social y Redes de Apoyo</h5>
+        <p>Comunidades de emprendedoras formadas que continúan apoyándose mutuamente tras finalizar el programa.</p>
+      </div>
+      <div class="impacto-meta"><span class="meta-val">2+</span><span class="meta-unit">Redes activas</span></div>
+    </div>
+
+    <div class="impacto-item">
+      <div class="impacto-num">🏆</div>
+      <div class="impacto-content" style="flex:1">
+        <h5>Incremento en Habilidades Digitales</h5>
+        <p>Medido mediante prueba de entrada/salida de competencias digitales, comerciales y de presentación.</p>
+      </div>
+      <div class="impacto-meta"><span class="meta-val">+60%</span><span class="meta-unit">Mejora promedio</span></div>
+    </div>
+
+    <div class="gold-line"></div>
+
+    <h3 style="font-size:13px; color:var(--azul-principal); margin-bottom:12px;">Resultados Esperados al Finalizar el Programa</h3>
+    <div class="grid-3">
+      <div class="callout" style="margin:0">
+        <p><strong>🌟 Económico</strong><br>Incremento en los ingresos familiares mediante la activación de canales digitales de venta y la formalización de emprendimientos informales.</p>
+      </div>
+      <div class="callout gold" style="margin:0">
+        <p><strong>👥 Social</strong><br>Fortalecimiento del tejido comunitario, la sororidad y el liderazgo femenino como factores de transformación social en Ciudad Bolívar.</p>
+      </div>
+      <div class="callout teal" style="margin:0">
+        <p><strong>📲 Digital</strong><br>Cierre de brechas digitales mediante el desarrollo de competencias prácticas en marketing, fotografía y comunicación comercial.</p>
+      </div>
+    </div>
+  </div>
+  <div class="interior-footer">
+    <span>Mujer Emprende Digital · Propuesta Formativa Institucional 2025</span>
+    <span>Alcaldía Local de Ciudad Bolívar · Bogotá D.C. · Pág. 8</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PÁGINA 9 – RECURSOS + CONCLUSIÓN + FIRMAS                  -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<div class="page interior">
+  <div class="interior-header">
+    <span class="interior-header-title">Mujer Emprende Digital · Ciudad Bolívar 2025</span>
+    <span class="interior-header-page">SECCIÓN 09–10 · RECURSOS · CONCLUSIÓN</span>
+  </div>
+  <div class="interior-body">
+
+    <div class="section-divider" style="margin: 0 -40px 24px; border-radius:0;">
+      <div class="section-divider-label">Sección 09</div>
+      <div class="section-divider-title">Recursos y Actividades Complementarias</div>
+      <div class="section-divider-num">09</div>
+    </div>
+
+    <div class="grid-3 mb-20">
+      <div class="card">
+        <div class="card-icon">👨‍💼</div>
+        <h4>Talento Humano</h4>
+        <div class="recurso-item"><div class="recurso-dot"></div><span class="recurso-text">Coordinador/a del proyecto</span></div>
+        <div class="recurso-item"><div class="recurso-dot"></div><span class="recurso-text">Formador/a en marketing digital</span></div>
+        <div class="recurso-item"><div class="recurso-dot"></div><span class="recurso-text">Formador/a en fotografía móvil</span></div>
+        <div class="recurso-item"><div class="recurso-dot"></div><span class="recurso-text">Profesional de apoyo psicosocial</span></div>
+        <div class="recurso-item"><div class="recurso-dot"></div><span class="recurso-text">Auxiliar logístico y administrativo</span></div>
+      </div>
+      <div class="card gold">
+        <div class="card-icon">💻</div>
+        <h4>Recursos Tecnológicos</h4>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--dorado)"></div><span class="recurso-text">Videobeam y pantalla de proyección</span></div>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--dorado)"></div><span class="recurso-text">Computador portátil del formador</span></div>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--dorado)"></div><span class="recurso-text">Acceso a internet WiFi</span></div>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--dorado)"></div><span class="recurso-text">Celulares personales (participantes)</span></div>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--dorado)"></div><span class="recurso-text">Canva Pro + apps gratuitas</span></div>
+      </div>
+      <div class="card teal">
+        <div class="card-icon">📚</div>
+        <h4>Material Pedagógico</h4>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--accent-teal)"></div><span class="recurso-text">Guías impresas por módulo</span></div>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--accent-teal)"></div><span class="recurso-text">Cuadernos y material de escritura</span></div>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--accent-teal)"></div><span class="recurso-text">Presentaciones audiovisuales</span></div>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--accent-teal)"></div><span class="recurso-text">Material para talleres prácticos</span></div>
+        <div class="recurso-item"><div class="recurso-dot" style="background:var(--accent-teal)"></div><span class="recurso-text">Certificados de participación</span></div>
+      </div>
+    </div>
+
+    <div class="callout gold" style="margin-bottom:16px;">
+      <p><strong>🎉 Actividades Complementarias:</strong> El programa incluirá talleres motivacionales, dinámicas de autoestima y autocuidado emocional, espacios de liderazgo femenino, charlas de empoderamiento económico, integración grupal y la Feria Final de Emprendimiento como escenario de exhibición, venta y certificación de logros.</p>
+    </div>
+
+    <div class="section-divider" style="margin: 16px -40px 24px; border-radius:0;">
+      <div class="section-divider-label">Sección 10</div>
+      <div class="section-divider-title">Conclusión Institucional</div>
+      <div class="section-divider-num">10</div>
+    </div>
+
+    <p class="body-text">El programa <strong>MUJER EMPRENDE DIGITAL</strong> representa una apuesta estratégica por la transformación social, el empoderamiento femenino y el cierre de brechas de género en uno de los territorios con mayor potencial de impacto del Distrito Capital. A través de una formación práctica, pertinente y humanizada, este programa busca convertir el talento, la creatividad y la resiliencia de las mujeres de Ciudad Bolívar en verdaderos motores de la economía popular local.</p>
+
+    <p class="body-text">La presente propuesta cumple con los estándares técnicos, pedagógicos y sociales requeridos por la Alcaldía Local, y expresa el compromiso institucional de contribuir a la construcción de un territorio más equitativo, inclusivo y próspero para todas sus habitantes.</p>
+
+    <div class="frase-impacto">
+      <p>"Capacitar a una mujer es fortalecer una familia y transformar una comunidad entera."</p>
+      <span>— Mujer Emprende Digital · Ciudad Bolívar · Bogotá D.C. 2025 —</span>
+    </div>
+
+    <div class="firma-section">
+      <div class="firma-box">
+        <div class="firma-logo-box"><span>Logo Alcaldía Local<br>Ciudad Bolívar</span></div>
+        <div class="firma-line">
+          <div class="firma-name">ALCALDÍA LOCAL</div>
+          <div class="firma-cargo">Ciudad Bolívar – Bogotá D.C.</div>
+        </div>
+      </div>
+      <div class="firma-box">
+        <div class="firma-logo-box"><span>Logo Entidad<br>Ejecutora</span></div>
+        <div class="firma-line">
+          <div class="firma-name">ENTIDAD EJECUTORA</div>
+          <div class="firma-cargo">Director/a del Proyecto</div>
+        </div>
+      </div>
+      <div class="firma-box">
+        <div class="firma-logo-box"><span>Logo Entidad<br>Aval Técnico</span></div>
+        <div class="firma-line">
+          <div class="firma-name">COORDINACIÓN TÉCNICA</div>
+          <div class="firma-cargo">Responsable Pedagógico</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="interior-footer">
+    <span>Mujer Emprende Digital · Propuesta Formativa Institucional 2025</span>
+    <span>Alcaldía Local de Ciudad Bolívar · Bogotá D.C. · Pág. 9</span>
+  </div>
+</div>
+
+</body>
+</html>
